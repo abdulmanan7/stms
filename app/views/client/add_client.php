@@ -3,8 +3,7 @@
 	<div class="box span12">
 		<div class="box-header" data-original-title>
 			<h2>
-				<i class="halflings-icon edit"></i><span class="break"></span>Client
-				Information
+				<i class="halflings-icon edit"></i><span class="break"></span>Add Client
 			</h2>
 			<div class="box-icon">
 				<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
@@ -19,8 +18,7 @@
 					<label class="control-label" for="mobile"><?php echo lang('lb_mobile_no')?></label>
 					<div class="controls">
 						<input name="mobile" class="input-xlarge" id="mobile" type="text"
-							value="" placeholder="Enter name here"> <input type="submit"
-							class="btn btn-info btn-xs" name="search" value="Search">
+							value="" placeholder="Enter name here"> 
 					</div>
 				</div>
 				<div class="control-group">
@@ -37,7 +35,9 @@
 							type="text" value="" placeholder="Enter name here">
 					</div>
 				</div>
-				<input type="submit" name="next" value="next">
+				<div class="col-sm-3 col-sm-offset-4">
+					<input type="submit" class="btn btn-info btn-xs" name="submit" value="submit">
+				</div>
 			</form>
 		</div>
 	</div>
