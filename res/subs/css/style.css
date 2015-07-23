@@ -31,7 +31,11 @@
 
 /* Main Colors
 =================================================================== */
-
+@font-face {
+	font-family:"jnnk";
+  src:url("../font/urdu_fonts/Jameel Noori Nastaleeq Kasheeda/Jameel Noori Nastaleeq Kasheeda.ttf");
+  /*font-weight: bold;*/
+}
 .black,
 .black [class="box-header"],
 .black.box,
@@ -239,8 +243,9 @@ body {
 	background: #F5F5F5;
 	color: #333;
 	border: none;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'jnnk' ,'Open Sans', sans-serif;
 	font-weight: 400;
+	/*direction: rtl;*/
 }
 
 a {
@@ -1496,7 +1501,6 @@ ul.chat.metro li.right .message .arrow {
 
 .form-actions {
   	padding: 19px 20px 20px;
-  	margin: 20px -10px -30px -10px;
   	background-color: #eee;
   	border-top: 1px solid #eee;
   	*zoom: 1;

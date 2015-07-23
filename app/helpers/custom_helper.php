@@ -1,5 +1,50 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+	exit('No direct script access allowed');
+}
 
+if (!function_exists('dateformat')) {
+	function dateformat($var = '', $time = FALSE) {
+		if ($time) {
+			$newDate = date("M d, Y, g:i a", strtotime($var));
+		} else {
+			$newDate = date("M d, Y", strtotime($var));
+		}
+		return $newDate;
+	}
+}
+if (!function_exists('set_message')) {
+	function set_message($msg, $type = 'success') {
+		switch ($type) {
+			case "error":
+				return '<div class="alert alert-danger"><i class="fa fa-times-circle"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'	 . $msg . '</div>';
+				break;
+			case "success":
+				return '<div class="alert alert-success"><i class="fa fa-check-circle"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'	 . $msg . '</div>';
+				break;
+			case "warning":
+				return '<div class="alert alert-warning"><i class="fa fa-warning"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'	 . $msg . '</div>';
+				break;
+			default:
+				return '<div class="alert alert-info"><i class="fa fa-info"></i>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'	 . $msg . '</div>';
+
+		}
+	}
+}
+if (!function_exists('pr')) {
+	function pr($arr = array(), $ret = FALSE) {
+		echo "<pre>";
+		print_r($arr);
+		if (!$ret) {
+			die;
+		}
+
+		echo "</pre>";
+	}
+}
 if (!function_exists('get_field')) {
 	function get_field($field, $data = array()) {
 		switch ($field) {
