@@ -1,4 +1,4 @@
-<?php $kurtaPemaish = true;
+<?php
 $wasketPemaish = true;
 $invoice = true;
 $jaket = true;
@@ -45,13 +45,21 @@ $pant = true;
 					</div> -->
 				</form>
 				<div class="row-fluid sortable">
-					<?php if ($kurtaPemaish): ?>
+					<?php if ($kurta): ?>
 						<div class="box blue span6">
 							<div class="box-header" data-orignal-title>
 								<h2><i class="icon-user"></i><span class="break"></span>Kurta Pemaish</h2>
 							</div>
 							<div class="box-content">
-								this is for invoices
+								<form action="#">
+								<?php echo form_input('', '');?>
+									<?php foreach ($kurta as $key => $val): ?>
+										<div class="control-group">
+										<label  class="control-label" for="<?php echo $key?>"><?php echo ucfirst($key);?></label>
+										<input type="text" value="<?php echo $val;?>" name="<?php echo $key;?>">
+										</div>
+									<?php endforeach?>
+								</form>
 							</div>
 						</div>
 					<?php endif?>
@@ -72,12 +80,7 @@ $pant = true;
 									<h2><i class="icon-certificate"></i><span class="break"></span>Wasket Pemaish</h2>
 								</div>
 								<div class="box-content">
-								<form action="#">
-								<?php echo form_input('', '');?>
-									<?php foreach ($wasketPemaish as $value): ?>
 
-									<?php endforeach?>
-								</form>
 								</div>
 							</div>
 					<?php endif?>

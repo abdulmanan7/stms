@@ -12,6 +12,7 @@ class Company extends CI_Controller {
 		$page = 'company/registration';
 		$this->load->view($page);
 	}
+
 	public function add() {
 		(int) $id = $this->uri->segment(3);
 		// print_r($id);die;

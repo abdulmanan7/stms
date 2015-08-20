@@ -14,6 +14,9 @@
 // Errors
 $lang['error_csrf'] = 'This form post did not pass our security checks.';
 //Headings
+$lang['heading_client'] = 'All Clients';
+$lang['update_client_heading'] = 'Updating Client';
+$lang['create_client_heading'] = 'Adding Client';
 $lang['heading_kurta_add'] = 'Adding Kurta Pemaish';
 $lang['heading_waskat_add'] = 'Adding Waskat Pemaish';
 $lang['heading_jacket_add'] = 'Adding Jacket Pemaish';
@@ -33,6 +36,8 @@ $lang['menu_clients'] = 'Clients';
 $lang['lb_mobile'] = 'Mobile No';
 $lang['lb_client_name'] = 'Client';
 $lang['lb_address'] = 'Address';
+$lang['lb_city'] = 'City';
+$lang['lb_actions'] = 'Actions';
 
 //labels for Kurat Add
 $lang['lb_lambai'] = 'Lambai';
@@ -48,9 +53,11 @@ $lang['lb_pancha'] = 'Pancha';
 
 //buttons
 $lang['btn_save_next'] = "Save & Next";
+$lang['btn_save'] = "Save";
 
 //placeholder
 $lang['placeholder_address'] = "Enter address here";
+$lang['placeholder_city'] = "Enter city here";
 $lang['placeholder_name'] = "Enter client name";
 $lang['placeholder_cellphone'] = "Enter mobile phone no here";
 $lang['placeholder_lambai'] = "Enter lambai";

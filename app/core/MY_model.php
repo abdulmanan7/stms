@@ -121,11 +121,19 @@ class MY_Model extends CI_Model {
 	public function get($primary_value) {
 		return $this->get_by($this->primary_key, $primary_value);
 	}
-
+	public function record_exists($table, $field, $field_val) {
+		$this->db->where($field, $field_val);
+		$count = $this->db->count_all_results($table);
+		if ($count > 0) {
+			return TRUE;
+		}
+		return FALSE;
+	}
 	/**
 	 * Fetch a single record based on an arbitrary WHERE call. Can be
 	 * any valid value to $this->_database->where().
 	 */
+
 	public function get_by() {
 		$where = func_get_args();
 
@@ -284,7 +292,7 @@ class MY_Model extends CI_Model {
 		if ($this->validate($data) !== FALSE) {
 			$this->_set_where($args);
 			$result = $this->_database->set($data)
-			               ->update($this->_table);
+				->update($this->_table);
 			$this->trigger('after_update', array($data, $result));
 
 			return $result;
@@ -299,7 +307,7 @@ class MY_Model extends CI_Model {
 	public function update_all($data) {
 		$data = $this->trigger('before_update', $data);
 		$result = $this->_database->set($data)
-		               ->update($this->_table);
+			->update($this->_table);
 		$this->trigger('after_update', array($data, $result));
 
 		return $result;
@@ -459,8 +467,8 @@ class MY_Model extends CI_Model {
 		}
 
 		$result = $this->_database->select(array($key, $value))
-		               ->get($this->_table)
-		               ->result();
+			->get($this->_table)
+			->result();
 
 		$options = array();
 
@@ -518,9 +526,9 @@ class MY_Model extends CI_Model {
 	 */
 	public function get_next_id() {
 		return (int) $this->_database->select('AUTO_INCREMENT')
-		                  ->from('information_schema.TABLES')
-		                  ->where('TABLE_NAME', $this->_table)
-		                  ->where('TABLE_SCHEMA', $this->_database->database)->get()->row()->AUTO_INCREMENT;
+			->from('information_schema.TABLES')
+			->where('TABLE_NAME', $this->_table)
+			->where('TABLE_SCHEMA', $this->_database->database)->get()->row()->AUTO_INCREMENT;
 	}
 
 	/**

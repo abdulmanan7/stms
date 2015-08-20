@@ -1,74 +1,54 @@
+<?php $this->load->view('partial/panel-start');?>
+<table class='table table-bordered'>
+	<thead>
+		<tr>
+			<th><?php echo lang('lb_client_name');?></th>
+			<th><?php echo lang('lb_mobile');?></th>
+			<th><?php echo lang('lb_city');?></th>
+			<th><?php echo lang('lb_address');?></th>
+			<th class='actions'><?php echo lang('lb_actions');?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($clients as $client): ?>
+			<tr>
+			<td><?php echo htmlspecialchars($client['name'], ENT_QUOTES, 'UTF-8');?></td>
+			<td><?php echo htmlspecialchars($client['cellphone'], ENT_QUOTES, 'UTF-8');?></td>
+			<td><?php echo htmlspecialchars($client['city'], ENT_QUOTES, 'UTF-8');?></td>
+			<td><?php echo htmlspecialchars($client['address'], ENT_QUOTES, 'UTF-8');?></td>
+			<td><a class='btn btn-info' href='<?php echo base_url("client/view/" . $client['id']);?>'>
+                    <i class='icon-folder-open'></i>
+                  </a>
+			<a class='btn btn-success' href='<?php echo base_url("client/update_kurta/" . $client['id']);?>'>
+                    <i class='icon-edit'></i>
+                  </a>
+			 <a class='btn btn-danger' href='<?php echo base_url("client/delete/" . $client['id']);?>'>
+                    <i class='icon-trash'></i>
+                  </a>
+			</td>
+			</tr>
+			<?php endforeach;?>
+		</tbody>
+	</table>
+<?php $this->load->view('partial/panel-end');?>
+<script>
+$(document).ready(function() {
+	autoField();
+});
+	 function autoField(){
+        $(".search").autocomplete({
+             data:{cellphone:cellphone},
+            source: '<?php echo site_url("ajax/client_autocomplete");?>',
+            select: function(e,ui) {
 
-	<div class="row-fluid">
-		 <?php if (null !== $this->session->flashdata('message')): ?>
-           <?php echo $this->session->flashdata('message');?>
-         <?php endif?>
-		<div class="span3 statbox purple" onTablet="span6" onDesktop="span3">
-			<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
-			<div class="number">854<i class="icon-arrow-up"></i></div>
-			<div class="title">visits</div>
-			<div class="footer">
-				<a href="#"> read full report</a>
-			</div>
-		</div>
-		<div class="span3 statbox green" onTablet="span6" onDesktop="span3">
-			<div class="boxchart">1,2,6,4,0,8,2,4,5,3,1,7,5</div>
-			<div class="number">123<i class="icon-arrow-up"></i></div>
-			<div class="title">sales</div>
-			<div class="footer">
-				<a href="#"> read full report</a>
-			</div>
-		</div>
-		<div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
-			<div class="boxchart">5,6,7,2,0,-4,-2,4,8,2,3,3,2</div>
-			<div class="number">982<i class="icon-arrow-up"></i></div>
-			<div class="title">orders</div>
-			<div class="footer">
-				<a href="#"> read full report</a>
-			</div>
-		</div>
-		<div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
-			<div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
-			<div class="number">678<i class="icon-arrow-down"></i></div>
-			<div class="title">visits</div>
-			<div class="footer">
-				<a href="#"> read full report</a>
-			</div>
-		</div>
-
-	</div>
-		<div class="row-fluid">
-
-				<a class="quick-button metro yellow span2">
-					<i class="icon-group"></i>
-					<p>Users</p>
-					<span class="badge">237</span>
-				</a>
-				<a class="quick-button metro red span2">
-					<i class="icon-comments-alt"></i>
-					<p>Comments</p>
-					<span class="badge">46</span>
-				</a>
-				<a class="quick-button metro blue span2">
-					<i class="icon-shopping-cart"></i>
-					<p>Orders</p>
-					<span class="badge">13</span>
-				</a>
-				<a class="quick-button metro green span2">
-					<i class="icon-barcode"></i>
-					<p>Products</p>
-				</a>
-				<a class="quick-button metro pink span2">
-					<i class="icon-envelope"></i>
-					<p>Messages</p>
-					<span class="badge">88</span>
-				</a>
-				<a class="quick-button metro black span2">
-					<i class="icon-calendar"></i>
-					<p>Calendar</p>
-				</a>
-
-				<div class="clearfix"></div>
-
-			</div><!--/row-->
-<!-- end: Content -->
+                $(this).prev().val(ui.item.id);
+            }//autocomplete finish
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+            var inner_html = '<a><div class="list_item_container">' + item.label + '</div></a>';
+            return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+                .append(inner_html)
+                .appendTo( ul );
+        };
+    }
+</script>

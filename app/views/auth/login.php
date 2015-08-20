@@ -1,28 +1,45 @@
-<h1><?php echo lang('login_heading');?></h1>
-<p><?php echo lang('login_subheading');?></p>
-
-<div id="infoMessage"><?php echo $message;?></div>
-
-<?php echo form_open("auth/login");?>
-
-  <p>
-    <?php echo lang('login_identity_label', 'identity');?>
-    <?php echo form_input($identity);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_password_label', 'password');?>
-    <?php echo form_input($password);?>
-  </p>
-
-  <p>
-    <?php echo lang('login_remember_label', 'remember');?>
+<?php $this->load->view('auth/header');?>
+  <body class='login'>
+    <div class='wrapper'>
+      <div class='row'>
+        <div class='col-lg-12'>
+          <div class='brand text-center'>
+            <h1>
+              <div class='logo-icon'>
+                <img src="<?php echo base_url('assets/images/logo.png');?>" alt="smart tailor logo" class="logo-img"/>
+              </div>
+              Smart Tailor
+            </h1>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-lg-12'>
+          <?php echo form_open("auth/login");?>
+            <fieldset class='text-center'>
+              <legend>Login to your account</legend>
+        <div id="infoMessage"><?php echo $message;?></div>
+              <div class='form-group'>
+                <?php echo form_input($identity);?>
+              </div>
+              <div class='form-group'>
+                <?php echo form_input($password);?>
+                <?php echo form_error();?>
+              </div>
+              <div class='text-center'>
+                <div class='checkbox'>
+                  <label>
     <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-  </p>
-
-
-  <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
-
-<?php echo form_close();?>
-
-<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
+                    <?php echo lang('login_remember_label', 'remember');?>
+                  </label>
+                </div>
+                <button class="btn btn-default" name='sign_in' type="submit">Sign in</button>
+                <br>
+               <a href="forgot_password"><?php echo lang('login_forgot_password');?></a>
+              </div>
+            </fieldset>
+          <?php echo form_close();?>
+        </div>
+      </div>
+    </div>
+    <?php $this->load->view('auth/footer');?>
