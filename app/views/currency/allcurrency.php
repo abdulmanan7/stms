@@ -1,6 +1,6 @@
 <?php $this->load->view('partial/panel-start');?>
                 <?php if (empty($allcurrency)): ?>
-                    <p>No Record Added Yet.</p>
+                    <p class="no-data"><?php echo lang('msg_no_data');?></p>
                 <?php else: ?>
                 <div class="bootstrap-admin-panel-content">
                     <table class="table table-striped table-bordered">

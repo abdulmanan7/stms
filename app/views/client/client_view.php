@@ -1,5 +1,8 @@
 <?php $kurta = $client['kurta'];unset($client['kurta']);?>
 <?php $this->load->view('partial/panel-start');?>
+<?php if (empty($client)): ?>
+  <p class="no-data"><?php echo lang('msg_no_record');?></p>
+<?php else: ?>
 <div class="row">
   <div class="col-lg-12">
     <div class="col-lg-4 color-gray client-info">
@@ -11,7 +14,7 @@
       </address>
     </div>
     <div class="col-lg-12 push-up">
-      <div class="pem-heading">Kurta Pemaish Details <a href="<?php echo base_url('client/update_kurta/' . $client['clientId']);?>" class="pull-right btn btn-warning btn-xs"><i class="icon-edit"> </i> Edit</a></div>
+      <div class="pem-heading">Kurta Pemaish Details <a href="<?php echo base_url('client/update_kurta/' . $client['clientId']);?>" data-toggle="tooltip" data-original-title="Edit client" class="pull-right btn btn-warning btn-xs"><i class="icon-edit"> </i> Edit</a></div>
       <div class="detail"><span class="badge">Lambai</span><h4><?php echo find_style($kurta['lambai']);?></h4></div>
       <div class="detail"><span class="badge">Chatti</span><h4><?php echo find_style($kurta['chatti']);?></h4></div>
       <div class="detail"><span class="badge">Tera</span><h4><?php echo find_style($kurta['tera']);?></h4></div>
@@ -24,4 +27,5 @@
     </div>
   </div>
 </div>
+<?php endif?>
 <?php $this->load->view('partial/panel-end');?>

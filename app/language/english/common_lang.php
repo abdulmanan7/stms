@@ -32,6 +32,7 @@ $lang['common_edit_btn'] = 'Edit';
 //messages
 $lang['messages'] = 'Notifications';
 $lang['msg_no_data'] = 'Sorry, no data to display';
+$lang['msg_no_record'] = 'Sorry, no record found try again!';
 $lang['msg_no_invoice'] = 'No invoice has been made so far';
 $lang['not_valid_id'] = '<h4 style="color:red;padding:10px;background:pink">Provide a valid Id <strong>Hints:Avoid String in URL! </strong></h4>';
 $lang['msg_no_customer'] = 'In order to Run the Apllication you have to add Customer(s)';
@@ -107,6 +108,8 @@ $lang['get_pdf_btn'] = 'Download';
 $lang['edit_btn'] = 'Edit';
 $lang['view_btn'] = 'View';
 $lang['del_btn'] = 'Delete';
+$lang['save_btn'] = 'Save';
+$lang['submit_btn'] = 'Save';
 $lang['add_btn'] = 'Add';
 $lang['more_btn'] = 'More info';
 $lang['img_help'] = 'Supported Files jpg,gif,png,jpeg<br/>File size must not be greater then 200kb.<br />Max Width/Height:300px';

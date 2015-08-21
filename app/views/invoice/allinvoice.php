@@ -6,7 +6,7 @@
 <?php $this->load->view('partial/panel-start');?>
 
 		  <?php if (empty($allinvoice)): ?>
-		  	<p><?php echo lang('msg_no_data');?></p>
+		  	 <p class="no-data"><?php echo lang('msg_no_data');?></p>
 		  <?php else: ?>
                    <form name="" method="get" action="<?php echo site_url('invoice');?>" role="form" id="form"
                          class="form-horizontal">

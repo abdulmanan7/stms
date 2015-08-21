@@ -69,13 +69,13 @@ class Products_model extends MY_Model {
 
 	}
 	//This function is used for populating dropdown list.
-	function get_products($q, $purchase_req = FALSE, $company_id = NULL) {
+	function get_products($q, $company_id = NULL) {
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
 		$this->db->select('*');
 		$this->db->where('company_id', $company_id);
-		($purchase_req === TRUE) ? $this->db->where('enable_stock', '1') : "";
 		$this->db->like('name', $q);
 		$query = $this->db->get('products');
+		$row_set = array();
 		if ($query->num_rows > 0) {
 			foreach ($query->result_array() as $row) {
 				$new_row['id'] = htmlentities(stripslashes($row['id']));
@@ -83,7 +83,7 @@ class Products_model extends MY_Model {
 				$new_row['price'] = htmlentities(stripslashes($row['price']));
 				$row_set[] = $new_row; //build an array
 			}
-			return json_encode($row_set); //format the array into json data
+			return $row_set; //format the array into json data
 		}
 	}
 	public function rec_count($company_id = NULL) {

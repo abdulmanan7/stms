@@ -1,6 +1,6 @@
 <?php $this->load->view('partial/panel-start');?>
         <?php if (empty($allproducts)): ?>
-            <p class="no-data">No Record Added Yet.</p>
+           <p class="no-data"><?php echo lang('msg_no_data');?></p>
         <?php else: ?>
             <table class="table table-bordered">
                 <thead>

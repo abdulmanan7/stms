@@ -8,16 +8,19 @@
     <meta content='' name='description'>
     <meta content='' name='keywords'>
     <link href='<?php echo find_url("css", "application-a07755f5.css");?>' rel="stylesheet" type="text/css" />
-    <link href='<?php echo find_url("css", "jquery-ui.css");?>' rel="stylesheet" type="text/css" />
+    <link href='<?php echo find_url("css", "jq_ui/jquery-ui.css");?>' rel="stylesheet" type="text/css" />
     <link href='<?php echo find_url("css", "font-awesome/css/font-awesome.min.css");?>' rel="stylesheet" type="text/css" />
     <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
     <link href='<?php echo find_url("images", "favicon.ico");?>' rel="icon" type="image/ico" />
     <link href='<?php echo find_url("css", "custom.css");?>' rel="stylesheet" type="text/css" />
     <?php if ($page_title == 'Dashboard'): ?>
-      <link href='<?php echo find_url("css", "dash-menu.css");?>' rel="stylesheet" type="text/css" />
     <?php endif?>
-    <script src='<?php echo find_url("js", "jquery.js");?>' type="text/javascript"></script>
-
+    <script src='<?php echo find_url("js", "jquery-1.11.3.js");?>' type="text/javascript"></script>
+<?php if ($page_title == 'order'): ?>
+  .ui-autocomplete-loading {
+  background: #fff url('../link/to/ajax-loading-image') right center no-repeat !important;
+}
+<?php endif?>
   </head>
   <body class='main page'>
     <!-- Navbar -->

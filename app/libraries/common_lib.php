@@ -7,9 +7,9 @@ class Common_lib {
 	public function __construct() {
 		$this->ci = &get_instance();
 	}
-	public function pagination($base_url, $count, $limit = '20') {
+	public function pagination($url, $count, $limit = '20') {
 		$this->ci->load->library('pagination');
-		$config['base_url'] = $base_url;
+		$config['base_url'] = base_url($url);
 		$config['total_rows'] = $count;
 		$config['per_page'] = $limit;
 		$config['uri_segment'] = 3;

@@ -70,10 +70,13 @@ class Client_model extends MY_Model {
 		$res = $this->db->get($this->_table);
 		return $res->result_array();
 	}
-	public function client_search($search, $limit = '', $offset = '') {
-		$this->db->limit($limit, $offset);
+	public function client_search($search, $row = FALSE) {
+		// $this->db->limit($lim);
 		$this->db->where('cellphone', $search);
 		$res = $this->db->get($this->_table);
+		if ($row == TRUE) {
+			return $res->row_array();
+		}
 		return $res->result_array();
 	}
 	public function update($id, $data, $table = '') {
@@ -86,5 +89,28 @@ class Client_model extends MY_Model {
 			return (bool) TRUE;
 		}
 		return (bool) FALSE;
+	}
+	function get_by_term($q) {
+		// $this->db->select('id,name,cellphone');
+		// // $this->db->like('cellphone', $q);
+		// $this->db->from('client');
+		// $query = $this->db->get();
+		// pr($query);
+		// $row_set = array();
+		// if ($query->num_rows > 0) {
+		// 	foreach ($query->result_array() as $row) {
+		// 		$new_row['id'] = htmlentities(stripslashes($row['id']));
+		// 		$new_row['label'] = htmlentities(stripslashes($row['name']));
+		// 		$new_row['value'] = htmlentities(stripslashes($row['cellphone']));
+		// 		$row_set[] = $new_row; //build an array
+		// 	}
+		// 	return $row_set; //format the array into json data
+		// }
+
+		$this->db->limit(10, 0);
+		$this->db->like('cellphone', $q);
+		$res = $this->db->get($this->_table);
+
+		return $res->result_array();
 	}
 }

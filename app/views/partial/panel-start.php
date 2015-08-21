@@ -32,7 +32,7 @@
 	<div class='panel-body filters'>
 		<div class='row'>
 			<div class='col-md-9'>
-				<?php echo anchor($add_link, lang('btn_add'), 'class="btn btn-info btn-sm"')?>
+			<?php echo button('add', $add_link, "Add client", 'icon-plus');?>
 			</div>
 			<form action="<?php echo $search_url;?>" >
 				<div class='col-md-3'>

@@ -1,4 +1,7 @@
 <?php $this->load->view('partial/panel-start');?>
+<?php if (empty($clients)): ?>
+	<p class="no-data"><?php echo lang('msg_no_data');?></p>
+<?php else: ?>
 <table class='table table-bordered'>
 	<thead>
 		<tr>
@@ -30,6 +33,7 @@
 			<?php endforeach;?>
 		</tbody>
 	</table>
+<?php endif?>
 <?php $this->load->view('partial/panel-end');?>
 <script>
 $(document).ready(function() {

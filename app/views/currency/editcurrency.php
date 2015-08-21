@@ -1,9 +1,7 @@
 <?php if (!isset($updateCurrency)) {echo "No Record Found";}
 ?>
-<h3 class="page-header">
- <i class="icon-edit" aria-hidden="true"></i> <?php echo lang('heading_update');?>
-</h3>
 <?php echo form_open('currency/update/' . $updateCurrency['id'], 'class="form-horizontal" id="updateform" role="form"');?>
+<legend> <i class="icon-edit" aria-hidden="true"></i> <?php echo lang('heading_update');?></legend>
 <div class="form-group">
   <label for="title" class="control-label sr_only col-md-3"><?php echo lang('title_label');?></label>
   <div class="col-md-7">

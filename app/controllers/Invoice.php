@@ -14,6 +14,7 @@ class Invoice extends CI_Controller {
 			$this->load->model('invoice_status_model');
 			// $this->load->model('company_model');
 			$this->load->model('client_model');
+			$this->load->model('currency_model');
 			$this->load->model('invoice_status_model');
 			$this->lang->load('invoice');
 		}
@@ -78,31 +79,27 @@ class Invoice extends CI_Controller {
 			$this->form_validation->set_rules('tax_type[]', $this->lang->line('validation_tax_type_label'), 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$customers = $this->customer_model->getCustomer();
+				$clients = $this->client_model->get();
 				$data['currency'] = $this->currency_model->getcurrency();
-				foreach ($customers as $val) {
+				foreach ($clients as $val) {
 
-					$data['customers'][$val['id']] = $val['company_name'];
+					$data['clients'][$val['id']] = $val['name'];
 
 				}
-				$data['selected_customer'] = 1;
+				$data['selected_client'] = 1;
 				//loading Tax
-				$this->load->model('taxtype_model');
-				$data['taxs'] = $this->taxtype_model->gettax();
-
-				$data['selected_tax'] = 1;
 				$data['page'] = 'invoice/addinvoice';
 
 				$this->load->view('template', $data);
 
 			} else {
 
-				foreach ($this->input->post('tax_type') as $key => $value) {
-					$taxtype = $this->taxtype_model->gettax($value);
-					$data['tax_type_id']['tax_type_id'] = $taxtype['id'];
-					$data['tax_type_name']['tax_type_name'] = $taxtype['name'];
-					$data['tax_type_percentage']['tax_type_percentage'] = $taxtype['percentage'];
-				}
+				/*foreach ($this->input->post('tax_type') as $key => $value) {
+				$taxtype = $this->taxtype_model->gettax($value);
+				$data['tax_type_id']['tax_type_id'] = $taxtype['id'];
+				$data['tax_type_name']['tax_type_name'] = $taxtype['name'];
+				$data['tax_type_percentage']['tax_type_percentage'] = $taxtype['percentage'];
+				}*/
 
 				$data['post'] = array(
 					'totaltax' => $this->input->post('taxtotal'),
@@ -111,10 +108,10 @@ class Invoice extends CI_Controller {
 				);
 
 				$data['company'] = $this->company_model->getCompanyBySql();
-				$data['customer'] = $this->customer_model->getCustomerBySql($this->input->post('customer_id'));
+				$data['client'] = $this->client_model->getclientBySql($this->input->post('client_id'));
 				$data['currency'] = $this->currency_model->getcurrencyBySql($this->input->post('currency'));
 
-				$data = $data['post'] + $data['customer'] + $data['currency'] + $data['company'];
+				$data = $data['post'] + $data['client'] + $data['currency'] + $data['company'];
 
 				$product['product_id'] = $this->input->post('product_id');
 				$product['product_name'] = $this->input->post('product');
@@ -133,39 +130,33 @@ class Invoice extends CI_Controller {
 
 		} //end if data submited...
 		else {
-			$this->load->model('customer_model');
-			$customers = $this->customer_model->getCustomer();
-			//check if customer exist
-			if (empty($customers)) {
-				$data['message'] = $this->lang->line('validation_customer_needed_label');
-				$this->session->set_flashdata('message', $data);
-				redirect('customer');
+			$this->load->model('client_model');
+			$clients = $this->client_model->get_all();
+			// pr($clients);
+			//check if client exist
+			if (empty($clients)) {
+				$message = $this->lang->line('validation_client_needed_label');
+				$this->session->set_flashdata('message', $message);
+				redirect('client');
 			}
 			$data['currency'] = $this->currency_model->getcurrency();
 			//check if currency exist
 			if (empty($data['currency'])) {
-				$data['message'] = $this->lang->line('validation_currency_needed_label');
-				$this->session->set_flashdata('message', $data);
+				$message = $this->lang->line('validation_currency_needed_label');
+				$this->session->set_flashdata('message', $message);
 				redirect('currency');
 			}
-			foreach ($customers as $val) {
+			foreach ($clients as $val) {
 
-				$data['customers'][$val['id']] = $val['company_name'];
+				$data['clients'][$val['id']] = $val['name'];
 
 			}
 
-			$data['selected_customer'] = 1;
+			$data['selected_client'] = 1;
 			//loading Tax
-			$this->load->model('taxtype_model');
-			$data['taxs'] = $this->taxtype_model->gettax();
-			//check if taxtype exist
-			if (empty($data['taxs'])) {
-				$data['message'] = $this->lang->line('validation_taxtype_needed_label');
-				$this->session->set_flashdata('message', $data);
-				redirect('taxtype');
-			}
+			// $this->load->model('taxtype_model');
+			// $data['taxs'] = $this->taxtype_model->gettax();
 
-			$data['selected_tax'] = 1;
 			$data['page'] = 'invoice/addinvoice';
 
 			$this->load->view('template', $data);
@@ -179,7 +170,7 @@ class Invoice extends CI_Controller {
 			redirect('invoice');
 		}
 		if ($_POST) {
-			$this->form_validation->set_rules('customer_id', $this->lang->line('validation_name_label'), 'required');
+			$this->form_validation->set_rules('client_id', $this->lang->line('validation_name_label'), 'required');
 			$this->form_validation->set_rules('date', $this->lang->line('validation_date_label'), 'required');
 			$this->form_validation->set_rules('product[]', $this->lang->line('validation_product_label'), 'required');
 			$this->form_validation->set_rules('price[]', $this->lang->line('validation_price_label'), 'required|numeric');
@@ -189,13 +180,13 @@ class Invoice extends CI_Controller {
 			if ($this->form_validation->run() == FALSE) {
 				$data['invoice'] = $this->invoice_model->getinvoice($invoiceId);
 				$data['currency'] = $this->currency_model->getcurrency();
-				$customers = $this->customer_model->getCustomer();
-				foreach ($customers as $val) {
+				$clients = $this->client_model->getclient();
+				foreach ($clients as $val) {
 
-					$data['customers'][$val['id']] = $val['company_name'];
+					$data['clients'][$val['id']] = $val['company_name'];
 
 				}
-				$data['selected_customer'] = 1;
+				$data['selected_client'] = 1;
 				//loading Tax
 				$this->load->model('taxtype_model');
 				$data['taxs'] = $this->taxtype_model->gettax();
@@ -214,9 +205,9 @@ class Invoice extends CI_Controller {
 
 				);
 				$data['company'] = $this->company_model->getCompanyBySql();
-				$data['customer'] = $this->customer_model->getCustomerBySql($this->input->post('customer_id'));
+				$data['client'] = $this->client_model->getclientBySql($this->input->post('client_id'));
 				$data['currency'] = $this->currency_model->getcurrencyBySql($this->input->post('currency'));
-				$data = $data['post'] + $data['company'] + $data['customer'] + $data['currency'];
+				$data = $data['post'] + $data['company'] + $data['client'] + $data['currency'];
 
 				$product['invoice_details_id'] = $this->input->post('invoice_details_id');
 				$product['product_id'] = $this->input->post('product_id');
@@ -238,13 +229,13 @@ class Invoice extends CI_Controller {
 		else {
 			$data['invoice'] = $this->invoice_model->getinvoice($invoiceId);
 			$data['currency'] = $this->currency_model->getcurrency();
-			$customers = $this->customer_model->getCustomer();
-			foreach ($customers as $val) {
+			$clients = $this->client_model->getclient();
+			foreach ($clients as $val) {
 
-				$data['customers'][$val['id']] = $val['company_name'];
+				$data['clients'][$val['id']] = $val['company_name'];
 
 			}
-			$data['selected_customer'] = 1;
+			$data['selected_client'] = 1;
 			//loading Tax
 			$this->load->model('taxtype_model');
 			$data['taxs'] = $this->taxtype_model->gettax();
@@ -259,7 +250,8 @@ class Invoice extends CI_Controller {
 		$this->load->model('products_model');
 		if (isset($_GET['term'])) {
 			$q = strtolower($_GET['term']);
-			$this->products_model->get_products($q);
+			$result = $this->products_model->get_products($q);
+			json_encode($result);
 		}
 	}
 	function singleinvoice($id) {

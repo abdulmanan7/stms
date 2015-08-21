@@ -23,7 +23,6 @@ class Auth extends CI_Controller {
 			'user_name' => $this->session->userdata('username'),
 			'refresh_url' => base_url('auth'),
 			'add_link' => 'auth/create_user',
-			'count' => $this->auth_model->count_all(),
 			'user_id' => $this->session->userdata('user_id'),
 		);
 		return $data;
