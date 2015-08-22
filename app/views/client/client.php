@@ -35,24 +35,3 @@
 	</table>
 <?php endif?>
 <?php $this->load->view('partial/panel-end');?>
-<script>
-$(document).ready(function() {
-	autoField();
-});
-	 function autoField(){
-        $(".search").autocomplete({
-             data:{cellphone:cellphone},
-            source: '<?php echo site_url("ajax/client_autocomplete");?>',
-            select: function(e,ui) {
-
-                $(this).prev().val(ui.item.id);
-            }//autocomplete finish
-        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-            var inner_html = '<a><div class="list_item_container">' + item.label + '</div></a>';
-            return $( "<li></li>" )
-                .data( "item.autocomplete", item )
-                .append(inner_html)
-                .appendTo( ul );
-        };
-    }
-</script>

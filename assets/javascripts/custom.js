@@ -26,6 +26,11 @@ jQuery.validator.setDefaults({
             return false;
         }
     });
+ $('body').on('click', '#rem', function(event) {
+        if (!confirm("Are you sure! want to remove this client from you client list?")) {
+            return false;
+        }
+    });
  $(document).ready(function() {
     $("body").on('keypress', '.quantity,.price', (function(event) {
         if (event.which == 8 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46) {
@@ -68,3 +73,18 @@ jQuery.validator.setDefaults({
         $(this).parent().find('span').remove();
     });
 }); //Documents Ready
+ $('#search_form').validate(
+            {
+                rules: {
+                    search: {
+                        number: true,
+                        minlength: 11,
+                        required: true
+                    }
+                }
+            });
+ jQuery.extend(jQuery.validator.messages, {
+    required: "You have to provide some data.",
+    number: "Only numbers Allowed",
+    minlength:'',
+});

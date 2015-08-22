@@ -42,7 +42,7 @@ class Client extends CI_Controller {
 		$data['links'] = $this->common_lib->pagination(base_url('client/index'), $data['count']);
 		if ($this->input->get('search')) {
 			$search = $this->input->get('search');
-			$data['clients'] = $this->clientdb->client_search($search, $limit, $offset);
+			$data['clients'] = $this->clientdb->client_search($search);
 		} else {
 			$data['clients'] = $this->clientdb->get_clients($limit, $offset);
 		}

@@ -1,4 +1,4 @@
-
+<div class="row" id="main-row">
 <div class="col-lg-4" class='client'>
     <form action="<?php echo base_url('order/get_client_info');?>" method="GET" class="form-inline" role="form">
         <div class="form-group" style="margin-left: 18px;">
@@ -22,10 +22,11 @@
 <div class="client_info">
 </div>
 </div>
+</div>
 <script>
   $(function() {
     $( "#tags" ).autocomplete({
-      source: "<?php echo base_url('order/get_client');?>",
+      source: "<?php echo base_url('ajax/get_client_by_cell');?>",
       minLength: 2,
       select: function( event, ui ) {
         display_client( ui.item ?
@@ -44,9 +45,8 @@
      dataType: 'html',
      data: {cellphone: cellphone},
      success:function(msg){
-      $(".client_info").remove();
-      var div='<div class="client_info"></div>'
-        $('#tags').append(div)
+         $(".client_info").remove();
+        $('#main-row').append($('<div class="col-lg-4 client_info"></div>'));
         $(".client_info").html(msg);
     },
 });

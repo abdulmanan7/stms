@@ -34,10 +34,10 @@
 			<div class='col-md-9'>
 			<?php echo button('add', $add_link, "Add client", 'icon-plus');?>
 			</div>
-			<form action="<?php echo $search_url;?>" >
+			<form action="<?php echo $search_url;?>" role="form" id="search_form">
 				<div class='col-md-3'>
 					<div class='input-group'>
-						<input class='search form-control' name='search' placeholder='Enter Cellphone...' type='text'>
+						<input class='search form-control' name='search' id="search" placeholder='Enter Cellphone...' type='text'>
 						<span class='input-group-btn'>
 							<button class='btn' type='submit'>
 								<i class='icon-search'></i>

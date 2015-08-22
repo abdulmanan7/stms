@@ -1,4 +1,3 @@
-
 	<div class="row-fluid">
 		 <?php if (null !== $this->session->flashdata('message')): ?>
            <?php echo $this->session->flashdata('message');?>

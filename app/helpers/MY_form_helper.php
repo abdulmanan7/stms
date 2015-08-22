@@ -3,7 +3,7 @@
 }
 
 if (!function_exists('button')) {
-	function button($type = '', $link = '', $tooltip = NULL, $size = '') {
+	function button($type, $link = '', $tooltip = NULL, $size = '') {
 		$size = (!empty($size)) ? ' btn-' . $size : '';
 		$attributes = array('class' => 'btn btn-success');
 		switch ($type) {
@@ -24,7 +24,7 @@ if (!function_exists('button')) {
 			case $type == 'del':
 				$attributes = array('class' => 'btn btn-danger');
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-danger' . $size);
+					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'delete btn btn-danger' . $size);
 				}
 				return anchor($link, lang('del_btn'), $attributes);
 				break;
@@ -43,7 +43,9 @@ if (!function_exists('button')) {
 				return anchor($link, lang('view_btn'), $attributes);
 				break;
 			default:
-				return anchor($link, lang('submit_btn'), 'class="btn btn-default"');
+				$rem_id = (strpos($type['link'], 'remove') !== false) ? 'rem' : '';
+				$attributes = array('id' => $rem_id, 'class' => 'btn btn-' . $type['type'], 'data-original-title' => $type['tooltip'], 'title' => '', 'data-toggle' => 'toolbar-tooltip');
+				return anchor($type['link'], lang($type['name']), $attributes);
 				break;
 		}
 	}

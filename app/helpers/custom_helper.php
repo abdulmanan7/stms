@@ -18,9 +18,11 @@ if (!function_exists('client_relation')) {
 		$CI->load->model('relation_model');
 		$res = $CI->relation_model->get_status($client_id);
 		if ($res) {
-			return button('del', 'relation/remove/' . $client_id, 'remove client from list');
+			$parms = array('link' => 'relation/remove/' . $client_id, 'type' => 'default btn-xs', 'name' => 'client_rem_btn', 'tooltip' => 'remove client from list');
+			return button($parms);
 		} else {
-			return button('add', 'relation/add_client/' . $client_id, 'add client to list');
+			$parms = array('link' => 'relation/add_client/' . $client_id, 'type' => 'success btn-xs', 'name' => 'client_add_btn', 'tooltip' => 'add client to list');
+			return button($parms);
 		}
 
 	}
@@ -31,19 +33,23 @@ if (!function_exists('set_message')) {
 		switch ($type) {
 			case "error":
 				return '<div class="alert alert-danger"><i class="icon-bad-circle"></i>
-																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "success":
 				return '<div class="alert alert-success"><i class="icon-check-sign"></i>
-																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "warning":
 				return '<div class="alert alert-warning"><i class="icon-warning-sign"></i>
-																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+				break;
+			case "info":
+				return '<div class="alert alert-info"><i class="icon-info"></i>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			default:
-				return '<div class="alert alert-info"><i class="icon-info"></i>
-																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+				return '<div class="alert-notify"><i class="icon-foursquare"></i>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 
 		}
 	}
@@ -340,6 +346,17 @@ if (!function_exists("find_return")) {
 		if (strpos($str, ' 14') !== false) {
 			return substr($str, -2);
 		}
+
+	}
+}
+if (!function_exists("request_uri")) {
+	function request_uri() {
+
+		$protocol = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+		$base_url = $protocol . "://" . $_SERVER['HTTP_HOST'];
+		$complete_url = $base_url . $_SERVER["REQUEST_URI"];
+
+		return $complete_url;
 
 	}
 }

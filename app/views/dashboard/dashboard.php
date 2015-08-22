@@ -1,9 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<div class="row">
-	<div class="col-lg-2">
+<div class="row" id="main-row">
+	<div class="col-xs-2 search-box">
 		<div class="search-bar">
-			<div class='col-md-12'>
-			<label for="cellphone" class="">search by Cellphone</label>
+			<form action="" method="POST" role="form">
+			<div class='col-xs-12 push-up-15'>
+			<label for="cellphone" >Search by cellphone</label>
 				<div class='input-group'>
 					<input id="by_cellphone" class='search form-control' name='cellphone' placeholder='Enter Cellphone...' type='text'>
 					<span class='input-group-btn'>
@@ -13,11 +14,8 @@
 					</span>
 				</div>
 			</div><!--col-md-12 end -->
-<br />
-<br />
-<br />
-			<div class='col-md-12'>
-			<label for="cellphone" class="">search by Name</label>
+			<div class='col-xs-12'>
+			<label for="cellphone">Search by name</label>
 				<div class='input-group'>
 					<input id="by_name" class='search form-control' name='search' placeholder='Enter Client Name...' type='text'>
 					<span class='input-group-btn'>
@@ -27,6 +25,7 @@
 					</span>
 				</div>
 			</div><!--col-md-12 end -->
+			</form>
 		</div>
 	</div>
 	<div class="col-lg-10 client_info">
@@ -35,28 +34,32 @@
 <script>
   $(function() {
     $( "#by_cellphone" ).autocomplete({
-      source: "<?php echo base_url('order/get_client');?>",
+      source: "<?php echo base_url('ajax/get_client_by_cell');?>",
       minLength: 2,
       select: function( event, ui ) {
-        display_client( ui.item ?
-          /*"Selected: " + ui.item.value + " aka " + ui.item.id*/ ui.item.value:
-          'no-data' );
+        display_client( ui.item ? ui.item.value:'no-data' );
+    }
+});
+  $( "#by_name" ).autocomplete({
+      source: "<?php echo base_url('ajax/get_client_by_name');?>",
+      minLength: 2,
+      select: function( event, ui ) {
+        display_client( ui.item ? ui.item.label:'no-data' );
     }
 });
 });
-  function display_client (cellphone) {
-    if (cellphone=='no-data') {
+  function display_client (param) {
+    if (param=='no-data') {
         var div='<div class="no-data">Nothing selected</div>'
         $('.client_info').appendTo(div);
     };
     $.ajax({
-     url: '<?php echo base_url("ajax/get_client");?>',
+     url: '<?php echo base_url("ajax/get_client_details");?>',
      dataType: 'html',
-     data: {cellphone: cellphone},
+     data: {param: param},
      success:function(msg){
-      // $(".client_info").remove();
-      // var div='<div class="client_info"></div>'
-        // $('#tags').append(div)
+        $(".client_info").remove();
+        $('#main-row').append($('<div class="col-lg-10 client_info"></div>'));
         $(".client_info").html(msg);
     },
 });

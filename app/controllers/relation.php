@@ -28,7 +28,30 @@ class Relation extends CI_Controller {
 			redirect('dashboard', 'refresh');
 		}
 	}
+	public function load_kurta_pem($client_id = '') {
+		$data['heading'] = "Client View";
+		$data['search_url'] = base_url('client/view');
+		$data['tool'] = (bool) FALSE;
+		//if search key is provide
+		$params = array('client_id' => $client_id);
+		$data['client'] = $this->clientdb->get_kurta($params);
+		$data['client']['kurta'] = '';
 
+		foreach ($data['client'] as $key => $val) {
+			$data['client']['kurta'][$key] = $val;
+
+		}
+		unset($data['client']['kurta']['id']);
+		unset($data['client']['kurta']['name']);
+		unset($data['client']['kurta']['cellphone']);
+		unset($data['client']['kurta']['city']);
+		unset($data['client']['kurta']['address']);
+		$data['page'] = "client/client_view";
+		// pr($data);
+		// $data['page'] = "client/view";
+		$this->load->view('template', $data);
+
+	}
 }
 
 /* End of file relation.php */
