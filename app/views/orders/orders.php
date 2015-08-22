@@ -24,10 +24,6 @@
 </div>
 <script>
   $(function() {
-   /* function display_client( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-    }
-    */
     $( "#tags" ).autocomplete({
       source: "<?php echo base_url('order/get_client');?>",
       minLength: 2,
@@ -50,7 +46,7 @@
      success:function(msg){
       $(".client_info").remove();
       var div='<div class="client_info"></div>'
-        $('.client_info').appendTo(div);
+        $('#tags').append(div)
         $(".client_info").html(msg);
     },
 });

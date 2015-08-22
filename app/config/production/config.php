@@ -25,7 +25,7 @@ function __autoload($classname) {
 | environments.
 |
  */
-$config['base_url'] = 'http://localhost/projects/stms/';
+$config['base_url'] = 'http://sajidshah.com/stms';
 
 /*
 |--------------------------------------------------------------------------

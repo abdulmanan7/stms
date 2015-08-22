@@ -12,6 +12,7 @@ class Ajax extends CI_Controller {
 			if (!$this->input->is_ajax_request()) {
 				exit('No direct script access allowed');
 			}
+			$this->load->model('client_model', 'clientdb');
 			/*$this->load->model('transaction_model');
 		$this->load->model('stock_model');
 		$this->load->model('payment_method_model');
@@ -20,6 +21,50 @@ class Ajax extends CI_Controller {
 		$this->load->model('currency_model');
 		$this->lang->load('transaction');*/
 		}
+	}
+	function global_array() {
+		$data = array(
+			'page_title' => 'Clients',
+			'heading' => lang('heading'),
+			'tool' => (bool) TRUE,
+			'search_url' => base_url('client/index'),
+			'user_name' => $this->session->userdata('username'),
+			'refresh_url' => base_url('client'),
+			'add_link' => 'client/add',
+			'count' => $this->clientdb->count_all(),
+			'user_id' => $this->session->userdata('user_id'),
+		);
+
+		return $data;
+	}
+	public function get_client($value = '') {
+		$cellphone = $this->input->get('cellphone');
+		$data = $this->global_array();
+		$data['heading'] = "Client View";
+		$data['search_url'] = base_url('client/view');
+		$data['tool'] = (bool) FALSE;
+		$data['client'] = $this->clientdb->get_kurta($params = array('cellphone' => $cellphone));
+		//if search key is provide
+		/*if ($this->input->get('search')) {
+		$cellphone = $this->input->get('search');
+		$params = array('cellphone' => $cellphone);
+		} else {
+		$params = array('client_id' => $client_id);
+		}*/
+
+		$data['client']['kurta'] = '';
+
+		foreach ($data['client'] as $key => $val) {
+			$data['client']['kurta'][$key] = $val;
+
+		}
+		unset($data['client']['kurta']['id']);
+		unset($data['client']['kurta']['name']);
+		unset($data['client']['kurta']['cellphone']);
+		unset($data['client']['kurta']['city']);
+		unset($data['client']['kurta']['address']);
+		echo $this->load->view('ajax/kurta_pem', $data, TRUE);
+
 	}
 	public function invoice_payment() {
 		if ($_POST) {

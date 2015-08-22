@@ -12,24 +12,38 @@ if (!function_exists('dateformat')) {
 		return $newDate;
 	}
 }
+if (!function_exists('client_relation')) {
+	function client_relation($client_id) {
+		$CI = &get_instance();
+		$CI->load->model('relation_model');
+		$res = $CI->relation_model->get_status($client_id);
+		if ($res) {
+			return button('del', 'relation/remove/' . $client_id, 'remove client from list');
+		} else {
+			return button('add', 'relation/add_client/' . $client_id, 'add client to list');
+		}
+
+	}
+}
+
 if (!function_exists('set_message')) {
 	function set_message($msg, $type = 'success') {
 		switch ($type) {
 			case "error":
 				return '<div class="alert alert-danger"><i class="icon-bad-circle"></i>
-																																	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "success":
 				return '<div class="alert alert-success"><i class="icon-check-sign"></i>
-																																	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "warning":
 				return '<div class="alert alert-warning"><i class="icon-warning-sign"></i>
-																																	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			default:
 				return '<div class="alert alert-info"><i class="icon-info"></i>
-																																	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+																																									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 
 		}
 	}

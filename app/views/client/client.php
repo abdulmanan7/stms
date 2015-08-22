@@ -25,7 +25,7 @@
 			<a class='btn btn-success' href='<?php echo base_url("client/update_kurta/" . $client['id']);?>'>
                     <i class='icon-edit'></i>
                   </a>
-			 <a class='btn btn-danger' href='<?php echo base_url("client/delete/" . $client['id']);?>'>
+			 <a class='btn btn-danger' href='<?php echo base_url("relation/remove/" . $client['id']);?>'>
                     <i class='icon-trash'></i>
                   </a>
 			</td>

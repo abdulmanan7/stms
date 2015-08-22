@@ -1,5 +1,5 @@
 <?php $kurta = $client['kurta'];unset($client['kurta']);?>
-<?php $this->load->view('partial/panel-start');?>
+<?php $this->load->view('ajax/panel-start');?>
 <?php if (empty($client)): ?>
   <p class="no-data"><?php echo lang('msg_no_record');?></p>
 <?php else: ?>
@@ -28,4 +28,4 @@
   </div>
 </div>
 <?php endif?>
-<?php $this->load->view('partial/panel-end');?>
+<?php $this->load->view('ajax/panel-end');?>

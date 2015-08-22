@@ -17,6 +17,11 @@
 class Client_model extends MY_Model {
 	protected $_table = 'client';
 	protected $return_type = 'array';
+	protected $comp_id;
+	public function __construct() {
+		parent::__construct();
+		$this->comp_id = $this->session->userdata('user_id');
+	}
 	public function insert($data, $table = '') {
 		$this->db->insert($table, $data);
 		$inserted_id = $this->db->insert_id();
@@ -67,6 +72,9 @@ class Client_model extends MY_Model {
 	}
 	public function get_clients($limit = '', $offset = '') {
 		$this->db->limit($limit, $offset);
+		$this->db->select();
+		$this->db->join('client_company_relation r', 'r.client_id = client.id', 'left');
+		$this->db->where('r.company_id', $this->comp_id);
 		$res = $this->db->get($this->_table);
 		return $res->result_array();
 	}

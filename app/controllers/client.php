@@ -22,7 +22,7 @@ class Client extends CI_Controller {
 			'page_title' => 'Clients',
 			'heading' => lang('heading'),
 			'tool' => (bool) TRUE,
-			'search_url' => 'client/index',
+			'search_url' => base_url('client/index'),
 			'user_name' => $this->session->userdata('username'),
 			'refresh_url' => base_url('client'),
 			'add_link' => 'client/add',
@@ -76,6 +76,8 @@ class Client extends CI_Controller {
 					$kurta_id = $this->clientdb->insert($k_data = array('client_id' => $client_id), 'kurta_pem');
 					$post_data['client_id'] = (int) $client_id;
 					$post_data['kurta_id'] = (int) $kurta_id;
+					$this->load->model('relation_model', 'relation');
+					$this->relation->add($client_id);
 					$this->choose_type($post_data);
 				} else {
 					$data['page'] = 'client/add_client';
