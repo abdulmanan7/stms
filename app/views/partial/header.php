@@ -12,13 +12,13 @@
     <link href='<?php echo find_url("css", "font-awesome/css/font-awesome.min.css");?>' rel="stylesheet" type="text/css" />
     <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
     <link href='<?php echo find_url("images", "favicon.ico");?>' rel="icon" type="image/ico" />
+    <!-- <link href='<?php echo find_url("css", "bootstrap.min.css");?>' rel="stylesheet" type="text/css" /> -->
     <link href='<?php echo find_url("css", "custom.css");?>' rel="stylesheet" type="text/css" />
     <?php if ($page_title == 'Dashboard'): ?>
     <?php endif?>
     <script src='<?php echo find_url("js", "jquery-1.11.3.js");?>' type="text/javascript"></script>
-<?php if ($page_title == 'order'): ?>
-  .ui-autocomplete-loading {
-  background: #fff url('../link/to/ajax-loading-image') right center no-repeat !important;
+<?php if ($page_title == 'Dashboard'): ?>
+    <link href='<?php echo find_url("css", "dashboard.css");?>' rel="stylesheet" type="text/css" />
 }
 <?php endif?>
   </head>
@@ -26,7 +26,7 @@
     <!-- Navbar -->
     <div class='navbar navbar-default' id='navbar'>
       <a class='navbar-brand' href='#'>
-        <img src="<?php echo find_url('images', 'logo.png');?>" alt="logo" style="height: 32px;">
+        <img src="<?php echo find_url('images', 'logo.png');?>" alt="logo" style="height: 38px;">
         <?php echo 'Smart Tailor'?>
       </a>
       <ul class='nav navbar-nav pull-right'>
@@ -118,9 +118,9 @@
             <i class='icon-cog'></i>
             <a href='#'>Settings</a>
           </li>
-          <li class='launcher'>
+          <li class="<?php echo ($page_title == 'Feedback') ? 'active launcher' : 'launcher';?>">
             <i class='icon-bug'></i>
-            <a href='#'>Feedback</a>
+            <a href='<?php echo base_url('customer_care/feedback');?>'>Feedback</a>
           </li>
         </ul>
         <div data-toggle='tooltip' id='beaker' title='Made by CodeME'></div>

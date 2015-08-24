@@ -50,3 +50,24 @@ if (!function_exists('button')) {
 		}
 	}
 }
+if (!function_exists('img_field')) {
+	function img_field($field_name = '', $val = '', $img_name = '', $placeholder = '', $id = '') {
+		$field_name_2nd = $field_name . "-x";
+		$img_name = (!empty($img_name)) ? $img_name : $field_name . '.png';
+		$id = (!empty($id)) ? $id : $field_name;
+		$placeholder = (!empty($placeholder)) ? $placeholder : "placeholder_" . $field_name;
+		return '<div class="img-field">
+               <div class="img">
+                <img src="' . find_url('images', 'entry/' . $img_name) . '" class="height-img img-responsive" alt="' . $img_name . '">
+                </div>
+                <div class="in-field">
+            <div class="input-group">
+                <input type="text" name="' . $field_name . '" value="' . find_return($val, 2) . '" class="form-control" id="' . $field_name . '" placeholder="' . lang($placeholder) . '">
+            </div>
+                <div class="input-group">
+                <input type="text" name="' . $field_name_2nd . '" value="' . find_return($val) . '" class="form-control" id="' . $field_name_2nd . '" placeholder="e.g 1/2,1/4">
+            </div>
+                </div>
+            </div>';
+	}
+}

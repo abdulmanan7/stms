@@ -157,7 +157,7 @@ class Client extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE) {
 				//failer
-				$data['page'] = 'client/add_kurta';
+				$data['page'] = 'client/add_kurta2';
 				$this->load->view('template', $data);
 			} else {
 				//successs
@@ -181,7 +181,7 @@ class Client extends CI_Controller {
 				}
 			}
 		} else {
-			$data['page'] = 'client/add_kurta';
+			$data['page'] = 'client/add_kurta2';
 			$this->load->view('template', $data);
 		}
 	}
@@ -219,7 +219,7 @@ class Client extends CI_Controller {
 
 			if ($this->form_validation->run() == FALSE) {
 				//failer
-				$data['page'] = 'client/update_kurta';
+				$data['page'] = 'client/update_kurta2';
 				$this->load->view('template', $data);
 			} else {
 				//successs
@@ -248,7 +248,7 @@ class Client extends CI_Controller {
 				}
 			}
 		} else {
-			$data['page'] = 'client/update_kurta';
+			$data['page'] = 'client/update_kurta2';
 			$this->load->view('template', $data);
 		}
 	}

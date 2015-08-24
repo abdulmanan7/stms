@@ -18,6 +18,7 @@ $lang['heading_client'] = 'All Clients';
 $lang['update_client_heading'] = 'Updating Client';
 $lang['create_client_heading'] = 'Adding Client';
 $lang['heading_kurta_add'] = 'Adding Kurta Pemaish';
+$lang['heading_kurta_update'] = 'Updating Pemaish';
 $lang['heading_waskat_add'] = 'Adding Waskat Pemaish';
 $lang['heading_jacket_add'] = 'Adding Jacket Pemaish';
 $lang['heading_pant_add'] = 'Adding Pant Pemaish';

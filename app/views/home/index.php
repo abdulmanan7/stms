@@ -68,7 +68,7 @@
                     <!-- logo -->
                     <h1 class="navbar-brand">
                         <a href="#body">
-                            <img src="res/img/logo.png" alt="Logo">
+                            <img src="res/img/logo.png" alt="Logo" style="height:37px;">
                         </a>
                     </h1>
                     <!-- /logo -->

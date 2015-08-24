@@ -33,23 +33,23 @@ if (!function_exists('set_message')) {
 		switch ($type) {
 			case "error":
 				return '<div class="alert alert-danger"><i class="icon-bad-circle"></i>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "success":
 				return '<div class="alert alert-success"><i class="icon-check-sign"></i>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "warning":
 				return '<div class="alert alert-warning"><i class="icon-warning-sign"></i>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			case "info":
 				return '<div class="alert alert-info"><i class="icon-info"></i>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 				break;
 			default:
 				return '<div class="alert-notify"><i class="icon-foursquare"></i>
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
+											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' . $msg . '</div>';
 
 		}
 	}
@@ -346,7 +346,8 @@ if (!function_exists("find_return")) {
 		if (strpos($str, ' 14') !== false) {
 			return substr($str, -2);
 		}
-
+		//whe str is empty return
+		return '';
 	}
 }
 if (!function_exists("request_uri")) {

@@ -13,14 +13,6 @@
 		<?php if ($tool): ?>
 			<div class='panel-tools'>
 				<div class='btn-group'>
-					<a class='btn' href='#'>
-						<i class='icon-wrench'></i>
-						Settings
-					</a>
-					<a class='btn' href='#'>
-						<i class='icon-filter'></i>
-						Filters
-					</a>
 					<a class='btn' data-toggle='toolbar-tooltip' href='<?php echo $refresh_url;?>' title='Reload'>
 						<i class='icon-refresh'></i>
 					</a>

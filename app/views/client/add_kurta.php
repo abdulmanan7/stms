@@ -42,7 +42,7 @@
 					<label class="col-lg-2 control-label" for="lambai"><?php echo lang('lb_lambai')?></label>
 					<div class="col-lg-7">
 						<input name="lambai" class="form-control" id="lambai" type="text"
-						value="<?php echo set_value('label');?>" placeholder="<?php echo lang('placeholder_lambai');?>">
+						value="<?php echo set_value('lambai');?>" placeholder="<?php echo lang('placeholder_lambai');?>">
 						<span class="validation_error">
 							<?php echo form_error('lambai');?>
 						</span>
