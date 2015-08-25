@@ -117,5 +117,6 @@ $lang['client_add_btn'] = 'Add as client';
 $lang['client_rem_btn'] = 'Remove client';
 $lang['submit_btn'] = 'Submit';
 $lang['add_btn'] = 'Add New';
+$lang['add_detail_btn'] = 'Add detail';
 $lang['more_btn'] = 'More info';
 $lang['img_help'] = 'Supported Files jpg,gif,png,jpeg<br/>File size must not be greater then 200kb.<br />Max Width/Height:300px';

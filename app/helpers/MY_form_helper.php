@@ -14,6 +14,13 @@ if (!function_exists('button')) {
 				}
 				return anchor($link, lang('add_btn'), $attributes);
 				break;
+			case $type == 'add_detail':
+				$attributes = array('class' => 'btn btn-success');
+				if ($tooltip) {
+					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-success' . $size);
+				}
+				return anchor($link, lang('add_detail_btn'), $attributes);
+				break;
 			case $type == 'edit':
 				$attributes = array('class' => 'btn btn-warning');
 				if ($tooltip) {

@@ -18,7 +18,6 @@ body.login .wrapper .brand h1 .logo-icon {
   position: relative;
   vertical-align: center;
   margin: 30px;
-  /*width: 100%;*/
   height: 100x;
   padding: 48px 48px;
   font-size: 22px;
@@ -155,7 +154,7 @@ body.login .wrapper .brand h1 .logo-icon {
     color: #901072;
 }
 .btn-primary.active{background-color:#77015B;border-color:#901072}
-.badge{color:#901072;background-color:#EFEFEF}
+.badge{color:#901072;background-color:#FDFDFD}
 .btn-primary:hover,#tools .btn-group .btn:hover,.btn-primary:focus,#tools .btn-group .btn:focus,.btn-primary:active,#tools .btn-group .btn:active,.btn-primary.active,#tools .btn-group .active.btn,.open>.btn-primary.dropdown-toggle,#tools .btn-group .open>.dropdown-toggle.btn{border-color:#901072;background-color:#77015B}
 .btn-link{color:#AD87B3;}
 .dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus{background-color:#77015B}
@@ -221,14 +220,15 @@ body.login{
     color: #3F8AB5;
 }
 .alert-notify {
-    background-color: #EADCED;
-    border-color: #E4BBEA;
-    color: #A268AB;
+        background-color: #A7358C;
+    border-color: #901072;
+    color: #E4E1E4;
     padding: 5px;
     border: 1px solid transparent;
     border-radius: 4px;
     margin-left: 20px;
     margin-right: 20px;
+    margin-bottom: 10px;
 }
 .pad-12{
     padding: 12px;

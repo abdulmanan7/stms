@@ -40,7 +40,12 @@ class Client_model extends MY_Model {
 		if (isset($params['client_id'])) {
 			$this->db->where('client.id', $params['client_id']);
 		}
-		return $this->db->get()->row_array();
+		if (isset($params['kurta_id'])) {
+			$this->db->where('k.kurta_id', $params['kurta_id']);
+			return $this->db->get()->row_array();
+		}
+		$this->db->order_by('client.id', 'desc');
+		return $this->db->get()->result_array();
 	}
 	//This function is used for populating dropdown list.
 	function get_client_by_cell($q, $company_id = NULL) {
@@ -75,6 +80,7 @@ class Client_model extends MY_Model {
 		$this->db->select();
 		$this->db->join('client_company_relation r', 'r.client_id = client.id', 'left');
 		$this->db->where('r.company_id', $this->comp_id);
+		$this->db->order_by('client.id', 'desc');
 		$res = $this->db->get($this->_table);
 		return $res->result_array();
 	}
@@ -92,6 +98,7 @@ class Client_model extends MY_Model {
 		if ($table == "kurta_pem") {
 			$this->db->where('kurta_id', $data['kurta_id']);
 		}
+		// pr($data);
 		$this->db->update($table, $data);
 		if ($this->db->affected_rows() > 0) {
 			return (bool) TRUE;

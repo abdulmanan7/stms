@@ -53,35 +53,44 @@ class Client extends CI_Controller {
 		$data = $this->global_array();
 		$data['heading'] = "Client Add";
 		if ($this->input->post()) {
-			(int) $id = $this->uri->segment(3);
-			// print_r($this->input->post('name'));
-			$this->form_validation->set_rules('name', 'Username', 'required');
-			$this->form_validation->set_rules('cellphone', 'Cellphone', 'required');
-
-			if ($this->form_validation->run() == FALSE) {
-				$data['page'] = 'client/add_client';
-				$this->load->view('template', $data);
+			//check if record already exits
+			$cell = $this->input->post('cellphone');
+			$rec_exist = $this->clientdb->record_exists('client', 'cellphone', $cell);
+			if ($rec_exist == true) {
+				$this->session->set_flashdata('message', set_message("User with cellphone No <strong>" . $cell . "</strong> already exist !", 'notify'));
+				redirect('client/view?search=' . $cell, 'refresh');
 			} else {
-				//successs
-				$post_data = array(
-					'name' => $this->input->post('name'),
-					'cellphone' => $this->input->post('cellphone'),
-					'address' => $this->input->post('address'),
-					'city' => $this->input->post('city'),
-				);
+				(int) $id = $this->uri->segment(3);
+				// print_r($this->input->post('name'));
+				$this->form_validation->set_rules('name', 'Username', 'required');
+				$this->form_validation->set_rules('cellphone', 'Cellphone', 'required');
 
-				$client_id = $this->clientdb->insert($post_data, 'client');
-				if ($client_id > 0) {
-					$this->session->set_flashdata('message', set_message("Record has been added successfully !"));
-					$kurta_id = $this->clientdb->insert($k_data = array('client_id' => $client_id), 'kurta_pem');
-					$post_data['client_id'] = (int) $client_id;
-					$post_data['kurta_id'] = (int) $kurta_id;
-					$this->load->model('relation_model', 'relation');
-					$this->relation->add($client_id);
-					$this->choose_type($post_data);
-				} else {
+				if ($this->form_validation->run() == FALSE) {
 					$data['page'] = 'client/add_client';
 					$this->load->view('template', $data);
+				} else {
+					//successs
+					$post_data = array(
+						'name' => $this->input->post('name'),
+						'cellphone' => $this->input->post('cellphone'),
+						'address' => $this->input->post('address'),
+						'city' => $this->input->post('city'),
+					);
+
+					$client_id = $this->clientdb->insert($post_data, 'client');
+					if ($client_id > 0) {
+						$this->session->set_flashdata('message', set_message("Record has been added successfully !"));
+						$kurta_id = $this->clientdb->insert($k_data = array('client_id' => $client_id), 'kurta_pem');
+						$post_data['client_id'] = (int) $client_id;
+						$post_data['kurta_id'] = (int) $kurta_id;
+						$this->load->model('relation_model', 'relation');
+						$this->relation->add($client_id);
+
+						$this->choose_type($kurta_id, 'client/update_kurta');
+					} else {
+						$data['page'] = 'client/add_client';
+						$this->load->view('template', $data);
+					}
 				}
 			}
 		} else {
@@ -126,24 +135,19 @@ class Client extends CI_Controller {
 			$this->load->view('template', $data);
 		}
 	}
-	private function choose_type($user_data) {
+	public function choose_type($id, $link = '') {
 		$data = $this->global_array();
-		$data['client'] = $user_data;
+		$data['link'] = (!empty($link)) ? $link : $this->input->get('link');
+		$data['id'] = $id;
 		$data['page'] = 'client/choose';
 		$this->load->view('template', $data);
 	}
-	function add_kurta() {
-
+	function add_kurta($client_id = '') {
+		(is_valid_id($client_id, 'client')) ? '' : show_404();
 		$data = $this->global_array();
 		$data['heading'] = "Adding client Kurta";
-		if ($this->input->get('client_id')) {
-			$client_id = $this->input->get('client_id');
-			$client_name = $this->input->get('name');
-			$cellphone = $this->input->get('cellphone');
-			$address = $this->input->get('address');
-			$data['client'] = ['name' => $client_name, 'cellphone' => $cellphone, 'client_id' => $client_id, 'address' => $address];
-		}
-		if ($this->input->post('lambai')) {
+
+		if ($this->input->post()) {
 			$this->form_validation->set_rules('lambai', 'lambai', 'required');
 			$this->form_validation->set_rules('mora', 'mora', 'required');
 			$this->form_validation->set_rules('shoulder', 'shoulder', 'required');
@@ -181,24 +185,25 @@ class Client extends CI_Controller {
 				}
 			}
 		} else {
+
+			$data['client'] = $this->clientdb->get_by($params = array('id' => $client_id));
 			$data['page'] = 'client/add_kurta2';
 			$this->load->view('template', $data);
 		}
 	}
-	public function update_kurta($id = '') {
-		$client_id = (isset($id)) ? $id : $this->input->post('client_id');
-		(is_valid_id($client_id, 'client')) ? '' : show_404();
+	public function update_kurta($kurta_id = '') {
+		$kurta_id = (isset($kurta_id)) ? $kurta_id : $this->input->post('kurta_id');
+		// (is_valid_id($kurta_id, 'kurta_pem')) ? '' : show_404();
 		$data = $this->global_array();
-		$data['heading'] = "updating client kurta";
-		$params = array('client_id' => $client_id);
+		$data['heading'] = $this->lang->line('heading_kurta_update');
+		$params = array('kurta_id' => $kurta_id);
 		$data['client'] = $this->clientdb->get_kurta($params);
-		$data['client']['kurta'] = '';
 
 		foreach ($data['client'] as $key => $val) {
 			$data['client']['kurta'][$key] = $val;
 
 		}
-		$kurta_id = $data['client']['kurta']['kurta_id'];
+		$client_id = $data['client']['kurta']['client_id'];
 		unset($data['client']['kurta']['name']);
 		unset($data['client']['kurta']['cellphone']);
 		unset($data['client']['kurta']['city']);
@@ -281,17 +286,17 @@ class Client extends CI_Controller {
 		}
 
 		$data['client'] = $this->clientdb->get_kurta($params);
-		$data['client']['kurta'] = '';
-
 		foreach ($data['client'] as $key => $val) {
-			$data['client']['kurta'][$key] = $val;
+			$data['kurtas'][$key] = $val;
+			$data['client']['client_id'] = $val['id'];
+			$data['client']['name'] = $val['name'];
+			$data['client']['cellphone'] = $val['cellphone'];
+			$data['client']['city'] = $val['city'];
+			$data['client']['address'] = $val['address'];
 
 		}
-		unset($data['client']['kurta']['id']);
-		unset($data['client']['kurta']['name']);
-		unset($data['client']['kurta']['cellphone']);
-		unset($data['client']['kurta']['city']);
-		unset($data['client']['kurta']['address']);
+		// pr($data);
+		unset($data['client'][0]);
 		$data['page'] = "client/client_view";
 		// pr($data);
 		// $data['page'] = "client/view";

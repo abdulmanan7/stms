@@ -5,38 +5,19 @@
 		<?php echo lang('heading_kurta_add');?>
 	</div>
 	<div class='panel-body'>
-		<form id="form" class="form-horizontal" action="<?php echo base_url('client/update_kurta');?>" method="Post" role="form">
+		<form id="form" class="form-horizontal" action="<?php echo base_url('client/add_kurta/' . $client['id']);?>" method="Post" role="form">
 			<div class="col-lg-12">
-			<!-- 	<?php echo form_hidden('client_id', $client['client_id']);?>
-			<?php echo form_hidden('kurta_id', $client['kurta_id']);?>
-			<?php echo form_hidden('cellphone', $client['cellphone']);?>
-			<?php echo form_hidden('address', $client['address']);?>
-			<?php echo form_hidden('name', $client['name']);?> -->
-				<!-- <div class="form-group">
-					<label class="col-lg-2 control-label" for="mobile"><?php echo lang('lb_mobile')?></label>
-					<div class="col-lg-10">
-						<span class="form-control"><?php echo $client['cellphone'];?></span>
-						<span class="validation_error">
-							<?php echo form_error('cellphone');?>
-						</span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-2 control-label" for="name"><?php echo lang('lb_client_name')?></label>
-					<div class="col-lg-10">
-						<span class="form-control"><?php echo $client['name'];?></span>
-						<span class="validation_error">
-							<?php echo form_error('name');?>
-						</span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class=" col-lg-2 control-label" for="address"><?php echo lang('lb_address')?></label>
-					<div class="col-lg-10">
-						<span class="form-control"><?php echo $client['address']?></span>
-						<?php echo form_error('address');?>
-					</div>
-				</div> -->
+			<?php echo form_hidden('client_id', $client['id']);?>
+		<div class="info-header header-md"><?php echo $client['name']?>
+			<span class="pull-right tiny-text"><i class='icon-plus icon-large'></i>
+				<?php echo lang('heading_kurta_add');?></span>
+			</div>
+			<address class="pad-12">
+				<strong><?php echo $client['cellphone']?></strong>
+				<p><?php echo $client['city']?></p>
+				<p><?php echo $client['address']?></p>
+			</address>
+			<div class="info-body">
 				<div class="row">
 				<div class="col-xs-6 col-xxs col-sm-4 col-md-3">
 					<?php echo form_error('lambai');?>
@@ -85,6 +66,7 @@
 				</div><!--row end -->
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary"><?php echo lang('btn_save_next');?></button>
+				</div>
 				</div>
 			</form>
 		</div><!--Span close-->

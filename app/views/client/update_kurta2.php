@@ -1,11 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <?php $kurta = $client['kurta'];unset($client['kurta']);?>
 <div class="col-lg-12 bg-primary">
-	<form id="form" class="form-horizontal" action="<?php echo base_url('client/update_kurta/' . $client['clientId']);?>" method="Post">
-		<?php echo form_hidden('client_id', $client['clientId']);?>
-		<?php echo form_hidden('cellphone', $client['cellphone']);?>
-		<?php echo form_hidden('address', $client['address']);?>
-		<?php echo form_hidden('name', $client['name']);?>
+	<form id="form" class="form-horizontal" action="<?php echo base_url('client/update_kurta/' . $client['kurta_id']);?>" method="Post">
+		<?php echo form_hidden('client_id', $client['client_id']);?>
 		<div class="info-header header-md"><?php echo $client['name']?>
 			<span class="pull-right tiny-text"><i class='icon-edit icon-large'></i>
 				<?php echo lang('heading_kurta_update');?></span>
