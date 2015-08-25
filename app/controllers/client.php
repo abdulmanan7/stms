@@ -193,7 +193,7 @@ class Client extends CI_Controller {
 	}
 	public function update_kurta($kurta_id = '') {
 		$kurta_id = (isset($kurta_id)) ? $kurta_id : $this->input->post('kurta_id');
-		// (is_valid_id($kurta_id, 'kurta_pem')) ? '' : show_404();
+		(is_valid_id($kurta_id)) ? '' : show_404();
 		$data = $this->global_array();
 		$data['heading'] = $this->lang->line('heading_kurta_update');
 		$params = array('kurta_id' => $kurta_id);
