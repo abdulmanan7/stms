@@ -23,6 +23,7 @@ class Client_model extends MY_Model {
 		$this->comp_id = $this->session->userdata('user_id');
 	}
 	public function insert($data, $table = '') {
+		$data['company_id'] = $this->comp_id;
 		$this->db->insert($table, $data);
 		$inserted_id = $this->db->insert_id();
 		return $inserted_id;
@@ -54,6 +55,7 @@ class Client_model extends MY_Model {
 		// $this->db->where('company_id', $company_id);
 		// ($purchase_req === TRUE) ? $this->db->where('enable_stock', '1') : "";
 		$this->db->like('cellphone', $q);
+		$this->db->where('company_id', $this->comp_id);
 		$query = $this->db->get($this->_table);
 		if ($query->num_rows > 0) {
 			$new_row = '';
@@ -87,6 +89,7 @@ class Client_model extends MY_Model {
 	public function client_search($search, $row = FALSE) {
 		$this->db->limit(1, 0);
 		$this->db->where('cellphone', $search);
+		$this->db->where('company_id', $this->comp_id);
 		$res = $this->db->get($this->_table);
 		if ($row == TRUE) {
 			return $res->row_array();

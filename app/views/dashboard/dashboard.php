@@ -25,7 +25,7 @@
 		</div>
 	</div>
 
-<div class="col-md-3 statbox purple" onTablet="span6" onDesktop="col-md-3">
+<!-- <div class="col-md-3 statbox purple" onTablet="span6" onDesktop="col-md-3">
 			<div class="boxchart">5,6,7,2,0,4,2,4,8,2,3,3,2</div>
 			<div class="number">854<i class="icon-arrow-up"></i></div>
 			<div class="title">visits</div>
@@ -56,7 +56,7 @@
 			<div class="footer">
 				<a href="#"> read full report</a>
 			</div>
-		</div>
+		</div> -->
 
 
 

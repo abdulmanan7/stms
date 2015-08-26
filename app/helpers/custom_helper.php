@@ -27,6 +27,12 @@ if (!function_exists('client_relation')) {
 
 	}
 }
+if (!function_exists('set_flash')) {
+	function set_flash($message, $type = 'notify') {
+		$CI = &get_instance();
+		$CI->session->set_flashdata('message', set_message($message, $type));
+	}
+}
 
 if (!function_exists('set_message')) {
 	function set_message($msg, $type = 'success') {

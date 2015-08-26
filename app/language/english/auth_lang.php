@@ -128,6 +128,7 @@ $lang['change_password_validation_new_password_confirm_label'] = 'Confirm New Pa
 
 // Forgot Password
 $lang['forgot_password_heading'] = 'Forgot Password';
+$lang['not_register_yet'] = '<span class="btn btn-success btn-xs">Register</span>';
 $lang['forgot_password_subheading'] = 'Please enter your %s so we can send you an email to reset your password.';
 $lang['forgot_password_email_label'] = '%s:';
 $lang['forgot_password_submit_btn'] = 'Submit';

@@ -87,6 +87,7 @@ class MY_Model extends CI_Model {
 	 */
 	protected $return_type = 'object';
 	protected $_temporary_return_type = NULL;
+	protected $comp_id = NULL;
 
 	/* --------------------------------------------------------------
 	 * GENERIC METHODS
@@ -109,6 +110,7 @@ class MY_Model extends CI_Model {
 		array_unshift($this->before_update, 'protect_attributes');
 
 		$this->_temporary_return_type = $this->return_type;
+		$this->comp_id = $this->session->userdata('user_id');
 	}
 
 	/* --------------------------------------------------------------
@@ -123,6 +125,7 @@ class MY_Model extends CI_Model {
 	}
 	public function record_exists($table, $field, $field_val) {
 		$this->db->where($field, $field_val);
+		$this->db->where('company_id', $this->comp_id);
 		$count = $this->db->count_all_results($table);
 		if ($count > 0) {
 			return TRUE;
@@ -142,7 +145,7 @@ class MY_Model extends CI_Model {
 		}
 
 		$this->_set_where($where);
-
+		$this->db->where('company_id', $this->comp_id);
 		$this->trigger('before_get');
 
 		$row = $this->_database->get($this->_table)
@@ -185,7 +188,7 @@ class MY_Model extends CI_Model {
 		if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE) {
 			$this->_database->where($this->soft_delete_key, (bool) $this->_temporary_only_deleted);
 		}
-
+		$this->db->where('company_id', $this->comp_id);
 		$result = $this->_database->get($this->_table)
 			->{$this->_return_type(1)}();
 		$this->_temporary_return_type = $this->return_type;
@@ -502,6 +505,7 @@ class MY_Model extends CI_Model {
 		if ($this->soft_delete && $this->_temporary_with_deleted !== TRUE) {
 			$this->_database->where($this->soft_delete_key, (bool) $this->_temporary_only_deleted);
 		}
+		$this->_database->where('company_id', $this->comp_id);
 
 		return $this->_database->count_all($this->_table);
 	}

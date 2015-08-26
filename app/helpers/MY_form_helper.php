@@ -3,51 +3,81 @@
 }
 
 if (!function_exists('button')) {
-	function button($type, $link = '', $tooltip = NULL, $size = '') {
+	function button($type, $link = '', $tooltip = NULL, $size = '', $icon = '') {
 		$size = (!empty($size)) ? ' btn-' . $size : '';
 		$attributes = array('class' => 'btn btn-success');
 		switch ($type) {
 			case $type == 'add':
-				$attributes = array('class' => 'btn btn-success');
+				$btn = '<a href="' . base_url($link) . '"';
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-success' . $size);
+					$btn .= 'data-toggle="tooltip" data-original-title="' . $tooltip . '"';
 				}
-				return anchor($link, lang('add_btn'), $attributes);
+				$btn .= 'class="btn btn-success ' . $size . '">';
+				if (!empty($icon)) {
+					$btn .= '<i class="' . $icon . '"> </i>';
+				}
+				$btn .= lang('add_btn') . '</a>';
+				return $btn;
 				break;
 			case $type == 'add_detail':
-				$attributes = array('class' => 'btn btn-success');
+				$btn = '<a href="' . base_url($link) . '"';
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-success' . $size);
+					$btn .= 'data-toggle="tooltip" data-original-title="' . $tooltip . '"';
 				}
-				return anchor($link, lang('add_detail_btn'), $attributes);
+				$btn .= 'class="btn btn-success ' . $size . '">';
+				if (!empty($icon)) {
+					$btn .= '<i class="' . $icon . '"> </i>';
+				}
+				$btn .= lang('add_detail_btn') . '</a>';
+				return $btn;
 				break;
 			case $type == 'edit':
-				$attributes = array('class' => 'btn btn-warning');
+				$btn = '<a href="' . base_url($link) . '"';
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-warning' . $size);
+					$btn .= 'data-toggle="tooltip" data-original-title="' . $tooltip . '"';
 				}
-				return anchor($link, lang('edit_btn'), $attributes);
+				$btn .= 'class="btn btn-warning ' . $size . '">';
+				if (!empty($icon)) {
+					$btn .= '<i class="' . $icon . '"> </i>';
+				}
+				$btn .= lang('edit_btn') . '</a>';
+				return $btn;
 				break;
 			case $type == 'del':
-				$attributes = array('class' => 'btn btn-danger');
+				$btn = '<a href="' . base_url($link) . '"';
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'delete btn btn-danger' . $size);
+					$btn .= 'data-toggle="tooltip" data-original-title="' . $tooltip . '"';
 				}
-				return anchor($link, lang('del_btn'), $attributes);
+				$btn .= 'class="btn btn-danger ' . $size . '">';
+				if (!empty($icon)) {
+					$btn .= '<i class="' . $icon . '"> </i>';
+				}
+				$btn .= lang('del_btn') . '</a>';
+				return $btn;
 				break;
 			case $type == 'save':
-				$attributes = array('class' => 'btn btn-info');
+				$btn = '<a href="' . base_url($link) . '"';
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-info' . $size);
+					$btn .= 'data-toggle="tooltip" data-original-title="' . $tooltip . '"';
 				}
-				return anchor($link, lang('save_btn'), $attributes);
+				$btn .= 'class="btn btn-info ' . $size . '">';
+				if (!empty($icon)) {
+					$btn .= '<i class="' . $icon . '"> </i>';
+				}
+				$btn .= lang('save_btn') . '</a>';
+				return $btn;
 				break;
 			case $type == 'view':
-				$attributes = array('class' => 'btn btn-primary');
+				$btn = '<a href="' . base_url($link) . '"';
 				if ($tooltip) {
-					$attributes = array('data-original-title' => $tooltip, 'title' => '', 'data-toggle' => 'toolbar-tooltip', 'class' => 'btn btn-primary' . $size);
+					$btn .= 'data-toggle="tooltip" data-original-title="' . $tooltip . '"';
 				}
-				return anchor($link, lang('view_btn'), $attributes);
+				$btn .= 'class="btn btn-primary ' . $size . '">';
+				if (!empty($icon)) {
+					$btn .= '<i class="' . $icon . '"> </i>';
+				}
+				$btn .= lang('view_btn') . '</a>';
+				return $btn;
 				break;
 			default:
 				$rem_id = (strpos($type['link'], 'remove') !== false) ? 'rem' : '';

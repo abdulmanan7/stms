@@ -23,7 +23,7 @@ class Currency_model extends CI_Model {
 	public function add($data, $company_id = NULL) {
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
 		$data['company_id'] = $company_id;
-		$this->db->insert('tblcurrency', $data);
+		$this->db->insert('currency', $data);
 		if ($this->db->insert_id() > 1) {
 			return set_message('Record Added Successfully');
 		}
@@ -35,12 +35,12 @@ class Currency_model extends CI_Model {
 		$data['company_id'] = $company_id;
 		$this->db->where('id', $data['id']);
 		$this->db->where('company_id', $company_id);
-		$this->db->update('tblcurrency', $data);
+		$this->db->update('currency', $data);
 		if ($data['default'] == '1') {
 			$this->db->where('id !=', $data['id']);
 			$this->db->where('company_id', $company_id);
 			$this->db->set('default', '0');
-			$this->db->update('tblcurrency');
+			$this->db->update('currency');
 		}
 		if ($this->db->insert_id() > 1) {
 			return set_message(lang('db_updated_record'));
@@ -54,7 +54,7 @@ class Currency_model extends CI_Model {
 			$this->db->where('id', $id);
 			$this->db->where('company_id', $company_id);
 			$this->db->limit(1, 0);
-			$this->db->delete('tblcurrency');
+			$this->db->delete('currency');
 			return ($this->db->affected_rows() > 0) ? 'Record Deleted Successfully' : 'Error Deleting Record';
 		} else {
 			return "Either you are Deleting a Default Currency or the record id is not valid";
@@ -67,7 +67,7 @@ class Currency_model extends CI_Model {
 		}
 
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
-		$this->db->select('*')->from('tblcurrency');
+		$this->db->select('*')->from('currency');
 		$this->db->where('company_id', $company_id)->order_by('default', 'DESC');
 		//single record
 		if ($currencyId) {
@@ -86,7 +86,7 @@ class Currency_model extends CI_Model {
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
 
 		$this->db->select('id as "currency_id",title as "currency_name",symbol_left as "currency_symbol_left", symbol_right as "currency_symbol_right"')
-			->from('tblcurrency')
+			->from('currency')
 			->where('company_id', $company_id);
 
 		//single record
@@ -104,7 +104,7 @@ class Currency_model extends CI_Model {
 
 	public function getDefaultCurrency($company_id = NULL) {
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
-		$this->db->select('*')->from('tblcurrency');
+		$this->db->select('*')->from('currency');
 		$this->db->where('company_id', $company_id);
 		//single record
 		$this->db->where('default', '1');
@@ -115,7 +115,7 @@ class Currency_model extends CI_Model {
 	public function rec_count($company_id = NULL) {
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
 		$this->db->where('company_id', $company_id);
-		return $this->db->count_all_results("tblcurrency");
+		return $this->db->count_all_results("currency");
 	}
 
 	public function is_default($Id, $company_id = NULL) {
@@ -123,7 +123,7 @@ class Currency_model extends CI_Model {
 		$this->db->where('company_id', $company_id);
 		$this->db->where('default', '1');
 		$this->db->where('id', $Id);
-		$query = $this->db->get('tblcurrency');
+		$query = $this->db->get('currency');
 		return ($query->num_rows() > 0) ? TRUE : FALSE;
 	}
 }

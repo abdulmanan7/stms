@@ -11,6 +11,58 @@ body.login .wrapper .brand h1 .logo-icon {
     -o-border-radius: 40px;
     background: #FFFFFF;
 }
+/*registration page*/
+.registration{
+    padding: 10px;
+    background-color: #ddd;
+    margin-top: 1%;
+    border: 1px solod #fff;
+    border-radius: 10px;
+     -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+  }
+  .info-block{
+    padding: 20px;
+    background-color: #B9D0E7;
+    border-radius: 12px;
+     -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    color: #5F5D5D;
+  }
+  /*registraion end*/
+  /*client list*/
+  .client-rec{
+       border: 3px solid #DDDDDD;
+    overflow: hidden;
+    padding: 2px;
+     /*box-shadow: 2px 2px 4px #000000;*/
+}
+.head {
+    height: 60px;
+    background-color: #78A8C3;
+    padding: 10px;
+    font-weight: 800;
+}
+.head p{
+font-size: 12px;
+    color: #fff;
+}
+.client-rec .action{
+  padding: 10px;
+  background-color: #F5F5DC;
+  height: 60px;
+}
+.tail{
+    background-color: #ECECEC;
+    height: 60px;
+    padding: 5px;
+    margin-left: 0px;
+}
+  /*client list end*/
 .push-up-15{
     margin-top: 15px;
 }
@@ -226,6 +278,10 @@ body.login{
     padding: 5px;
     border: 1px solid transparent;
     border-radius: 4px;
+     -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 10px;
@@ -269,12 +325,30 @@ body.login{
     line-height: 1.428571429;
     overflow: hidden;
 }
+.info-body p{
+}
+.info-lg{
+  width: 98%;
+  margin: 0 auto;
+}
+.info-md{
+  width: 90%;
+  margin: 0 auto;
+}
+.info-sm{
+  width: 60%;
+  margin: 0 auto;
+}
+.info-xs{
+  width: 26%;
+  margin: 0 auto;
+}
 .info-info .info-header {
     color:#fff;
     background-color:#3F8AB5; 
 }
 .info-info .info-body{
-    border-color: #3F8AB5;
+    border-color: #78A8C3;
 }
 .info-danger .info-header {
     color:#fff;
@@ -305,9 +379,10 @@ body.login{
   background-color: #3F8AB5;
   border: 1px solid #ddd;
   border-radius: 4px;
-  -webkit-transition: border .2s ease-in-out;
-  -o-transition: border .2s ease-in-out;
-  transition: border .2s ease-in-out;
+  -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
   height: 145px;
   width: 138px;
   margin-right: auto;
@@ -336,6 +411,10 @@ body.login{
         border: 1px solid #ddd;
     background-color: rgb(63, 138, 181);
     border-radius: 5px;
+     -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
     color:#fff;
 }
 .tiny-text{

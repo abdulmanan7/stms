@@ -76,18 +76,17 @@ class Ajax extends CI_Controller {
 		} else {
 			$data['client'] = $this->clientdb->get_kurta($params = array('name' => $param));
 		}
-		$data['client_relation'] = client_relation($data['client']['id']);
-		$data['client']['kurta'] = '';
-
 		foreach ($data['client'] as $key => $val) {
-			$data['client']['kurta'][$key] = $val;
+			$data['kurtas'][$key] = $val;
+			$data['client']['client_id'] = $val['client_id'];
+			$data['client']['name'] = $val['name'];
+			$data['client']['cellphone'] = $val['cellphone'];
+			$data['client']['city'] = $val['city'];
+			$data['client']['address'] = $val['address'];
 
 		}
-		unset($data['client']['kurta']['id']);
-		unset($data['client']['kurta']['name']);
-		unset($data['client']['kurta']['cellphone']);
-		unset($data['client']['kurta']['city']);
-		unset($data['client']['kurta']['address']);
+		$data['client_relation'] = client_relation($data['client']['client_id']);
+		unset($data['client'][0]);
 		echo $this->load->view('ajax/kurta_pem', $data, TRUE);
 
 	}

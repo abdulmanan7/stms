@@ -24,7 +24,7 @@
 	<div class='panel-body filters'>
 		<div class='row'>
 			<div class='col-md-9'>
-			<?php echo button('add', $add_link, "Add client", 'icon-plus');?>
+			<?php echo button('add', $add_link, "Add client", 'sm', 'icon-plus');?>
 			</div>
 			<form action="<?php echo $search_url;?>" role="form" id="search_form">
 				<div class='col-md-3'>

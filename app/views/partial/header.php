@@ -19,7 +19,6 @@
     <script src='<?php echo find_url("js", "jquery-1.11.3.js");?>' type="text/javascript"></script>
 <?php if ($page_title == 'Dashboard'): ?>
     <link href='<?php echo find_url("css", "dashboard.css");?>' rel="stylesheet" type="text/css" />
-}
 <?php endif?>
   </head>
   <body class='main page'>
