@@ -3,7 +3,7 @@
 	<head>
 		<meta charset='utf-8'>
 		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-		<title>Login</title>
+		<title>Registration</title>
 		<meta content='lab2023' name='author'>
 		<meta content='' name='description'>
 		<meta content='' name='keywords'>
@@ -60,14 +60,14 @@
 								By clicking on "Register" you agree to The Company's' Terms and Conditions
 							</p>
 							<p>
-								While rare, prices are subject to change based on exchange rate fluctuations -
-								should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+								By registring you will be automatically subscribe to free basic pakage which proivde free unlimited pemaish entry and retrival -
+								<strong>To avail all functionality you have to subscribe at very low and afortable price starting from Rs.1000</strong>
 							</p>
 							<p>
-								Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+								it's is very powerfull application ,your data is store permanent and can be access any time anywhere all you have to log in and access.
 							</p>
 							<p>
-								Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+								Smart tailoring managment teams work 24/7 to provide best customer support and to make it more reliable,trust worthy.
 							</p>
 							<button type="submit" class="btn btn-primary">Register</button>
 						</div>

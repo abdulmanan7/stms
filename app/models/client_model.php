@@ -23,10 +23,25 @@ class Client_model extends MY_Model {
 		$this->comp_id = $this->session->userdata('user_id');
 	}
 	public function insert($data, $table = '') {
-		$data['company_id'] = $this->comp_id;
 		$this->db->insert($table, $data);
 		$inserted_id = $this->db->insert_id();
 		return $inserted_id;
+	}
+	public function save_client($data) {
+		$this->db->trans_start();
+		//adding client
+		$client_id = $this->insert($data, $this->_table);
+		//adding kurta
+		$kurta_id = $this->insert(array('client_id' => $client_id), 'kurta_pem');
+		//adding relation
+		$this->insert(array('client_id' => $client_id, 'company_id' => $this->comp_id), 'client_company_relation');
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE) {
+			$this->db->trans_rollback();
+			return (bool) FALSE;
+		} else {
+			return $kurta_id;
+		}
 	}
 	public function get_kurta($params) {
 		$this->db->select('k.*,client.id as clientId ,client.*');
@@ -84,12 +99,12 @@ class Client_model extends MY_Model {
 		$this->db->where('r.company_id', $this->comp_id);
 		$this->db->order_by('client.id', 'desc');
 		$res = $this->db->get($this->_table);
+		// pr($res->result_array());
 		return $res->result_array();
 	}
 	public function client_search($search, $row = FALSE) {
 		$this->db->limit(1, 0);
 		$this->db->where('cellphone', $search);
-		$this->db->where('company_id', $this->comp_id);
 		$res = $this->db->get($this->_table);
 		if ($row == TRUE) {
 			return $res->row_array();
@@ -97,7 +112,8 @@ class Client_model extends MY_Model {
 		return $res->result_array();
 	}
 	public function update($id, $data, $table = '') {
-		$this->db->where('client_id', $id);
+		$table = (!empty($table)) ? $table : $this->_table;
+		$this->db->where('id', $id);
 		if ($table == "kurta_pem") {
 			$this->db->where('kurta_id', $data['kurta_id']);
 		}

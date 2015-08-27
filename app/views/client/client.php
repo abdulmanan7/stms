@@ -16,7 +16,7 @@
 		<a class='btn btn-info' href='<?php echo base_url("client/view/" . $client['id']);?>'>
 			<i class='icon-folder-open'></i>
 		</a>
-		<a class='btn btn-success' href='<?php echo base_url("client/update_kurta/" . $client['id']);?>'>
+		<a class='btn btn-success' href='<?php echo base_url("client/update/" . $client['id']);?>'>
 			<i class='icon-edit'></i>
 		</a>
 		<a class='btn btn-danger' href='<?php echo base_url("relation/remove/" . $client['id']);?>'>

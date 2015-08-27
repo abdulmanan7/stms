@@ -853,6 +853,7 @@ class Ion_auth_model extends CI_Model {
 			'email' => $email,
 			'ip_address' => $ip_address,
 			'created_on' => time(),
+			'api_key' => $this->_generate_key(),
 			'active' => ($manual_activation === false ? 1 : 0),
 		);
 
@@ -977,7 +978,20 @@ class Ion_auth_model extends CI_Model {
 		}
 		return FALSE;
 	}
+	private function _generate_key() {
+		do {
+			$salt = hash('sha1', time() . mt_rand());
+			$new_key = substr($salt, 0, 40);
+		}
 
+		//Already in the DB? Fail. Try again
+		while (self::_key_exists($new_key));
+
+		return $new_key;
+	}
+	private function _key_exists($key) {
+		return $this->db->where('api_key', $key)->count_all_results('users') > 0;
+	}
 	/**
 	 * Get number of attempts to login occured from given IP-address or identity
 	 * Based on code from Tank Auth, by Ilya Konyukhov (https://github.com/ilkon/Tank-Auth)

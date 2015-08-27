@@ -72,52 +72,52 @@
 			{
 				rules: {
 					'lambai': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'mora': {
-						maxlength: 3,
+						maxlength: 2,
 						number:true,
 						required: true
 					},
 					'shalwar': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'shoulder': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'chatti': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'tera': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'collar': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'asteen': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'daman': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					},
 					'pancha': {
-						maxlength:3,
+						maxlength:2,
 						number:true,
 						required: true
 					}

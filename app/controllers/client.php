@@ -8,6 +8,7 @@ class Client extends CI_Controller {
 	 * developer at ithinq.net
 	 */
 	public static $data = array('client' => '');
+	protected $comp_id;
 	function __construct() {
 		parent::__construct();
 		if (!$this->ion_auth->logged_in()) {
@@ -15,6 +16,7 @@ class Client extends CI_Controller {
 		} else {
 			$this->lang->load('client');
 			$this->load->model('client_model', 'clientdb');
+			$this->comp_id = $this->session->userdata('user_id');
 		}
 	}
 	function global_array() {
@@ -61,11 +63,7 @@ class Client extends CI_Controller {
 				redirect('client/view?search=' . $cell, 'refresh');
 			} else {
 				(int) $id = $this->uri->segment(3);
-				// print_r($this->input->post('name'));
-				$this->form_validation->set_rules('name', 'Username', 'required');
-				$this->form_validation->set_rules('cellphone', 'Cellphone', 'required');
-
-				if ($this->form_validation->run() == FALSE) {
+				if ($this->form_validation->run('client') == FALSE) {
 					$data['page'] = 'client/add_client';
 					$this->load->view('template', $data);
 				} else {
@@ -75,19 +73,15 @@ class Client extends CI_Controller {
 						'cellphone' => $this->input->post('cellphone'),
 						'address' => $this->input->post('address'),
 						'city' => $this->input->post('city'),
+						'company_id' => $this->comp_id,
 					);
 
-					$client_id = $this->clientdb->insert($post_data, 'client');
-					if ($client_id > 0) {
+					$kurta_id = $this->clientdb->save_client($post_data, 'client');
+					if ($kurta_id > 0) {
 						$this->session->set_flashdata('message', set_message("Record has been added successfully !"));
-						$kurta_id = $this->clientdb->insert($k_data = array('client_id' => $client_id), 'kurta_pem');
-						$post_data['client_id'] = (int) $client_id;
-						$post_data['kurta_id'] = (int) $kurta_id;
-						$this->load->model('relation_model', 'relation');
-						$this->relation->add($client_id);
-
 						$this->choose_type($kurta_id, 'client/update_kurta');
 					} else {
+						set_flash("Fail !while insert record for client !", 'error');
 						$data['page'] = 'client/add_client';
 						$this->load->view('template', $data);
 					}
@@ -98,14 +92,12 @@ class Client extends CI_Controller {
 			$this->load->view('template', $data);
 		}
 	}
-	public function update($id = NULL) {
+	public function update($id = '') {
 		(is_valid_id($id, 'client')) ? '' : show_404();
 		$data = $this->global_array();
 		$data['heading'] = "Client Updating";
 		if ($this->input->post()) {
-			$this->form_validation->set_rules('name', 'Username', 'required');
-			$this->form_validation->set_rules('cellphone', 'Cellphone', 'required');
-			if ($this->form_validation->run() == FALSE) {
+			if ($this->form_validation->run('client') == FALSE) {
 				$data['client'] = $this->clientdb->get($id);
 				$data['page'] = 'client/update_client';
 				$this->load->view('template', $data);
@@ -129,7 +121,7 @@ class Client extends CI_Controller {
 				}
 			}
 		} else {
-			$this->session->set_flashdata('message', set_message("Please provide correct ID !", 'error'));
+			// $this->session->set_flashdata('message', set_message("Please provide correct ID !", 'error'));
 			$data['client'] = $this->clientdb->get($id);
 			$data['page'] = 'client/update_client';
 			$this->load->view('template', $data);
@@ -148,18 +140,8 @@ class Client extends CI_Controller {
 		$data['heading'] = "Adding client Kurta";
 
 		if ($this->input->post()) {
-			$this->form_validation->set_rules('lambai', 'lambai', 'required');
-			$this->form_validation->set_rules('mora', 'mora', 'required');
-			$this->form_validation->set_rules('shoulder', 'shoulder', 'required');
-			$this->form_validation->set_rules('chatti', 'chatti', 'required');
-			$this->form_validation->set_rules('tera', 'tera', 'required');
-			$this->form_validation->set_rules('collar', 'collar', 'required');
-			$this->form_validation->set_rules('asteen', 'asteen', 'required');
-			$this->form_validation->set_rules('daman', 'daman', 'required');
-			$this->form_validation->set_rules('shalwar', 'shalwar', 'required');
-			$this->form_validation->set_rules('pancha', 'pancha', 'required');
 
-			if ($this->form_validation->run() == FALSE) {
+			if ($this->form_validation->run('kurta') == FALSE) {
 				//failer
 				$data['page'] = 'client/add_kurta2';
 				$this->load->view('template', $data);
@@ -211,18 +193,8 @@ class Client extends CI_Controller {
 		unset($data['client']['kurta']['id']);
 		// pr($data);
 		if ($this->input->post()) {
-			$this->form_validation->set_rules('lambai', 'lambai', 'required');
-			$this->form_validation->set_rules('mora', 'mora', 'required');
-			$this->form_validation->set_rules('shoulder', 'shoulder', 'required');
-			$this->form_validation->set_rules('chatti', 'chatti', 'required');
-			$this->form_validation->set_rules('tera', 'tera', 'required');
-			$this->form_validation->set_rules('collar', 'collar', 'required');
-			$this->form_validation->set_rules('asteen', 'asteen', 'required');
-			$this->form_validation->set_rules('daman', 'daman', 'required');
-			$this->form_validation->set_rules('shalwar', 'shalwar', 'required');
-			$this->form_validation->set_rules('pancha', 'pancha', 'required');
 
-			if ($this->form_validation->run() == FALSE) {
+			if ($this->form_validation->run('kurta') == FALSE) {
 				//failer
 				$data['page'] = 'client/update_kurta2';
 				$this->load->view('template', $data);

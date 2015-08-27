@@ -125,7 +125,6 @@ class MY_Model extends CI_Model {
 	}
 	public function record_exists($table, $field, $field_val) {
 		$this->db->where($field, $field_val);
-		$this->db->where('company_id', $this->comp_id);
 		$count = $this->db->count_all_results($table);
 		if ($count > 0) {
 			return TRUE;
@@ -145,7 +144,6 @@ class MY_Model extends CI_Model {
 		}
 
 		$this->_set_where($where);
-		$this->db->where('company_id', $this->comp_id);
 		$this->trigger('before_get');
 
 		$row = $this->_database->get($this->_table)

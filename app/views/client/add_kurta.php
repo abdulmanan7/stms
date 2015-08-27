@@ -55,7 +55,7 @@
 					<label class="col-lg-2 control-label" for="mora"><?php echo lang('lb_mora')?></label>
 					<div class="col-lg-7">
 						<input name="mora" class="form-control" id="mora"
-						type="text" value="" placeholder="<?php echo lang('placeholder_mora');?>">
+						type="text" value="<?php echo set_value('mora');?>" placeholder="<?php echo lang('placeholder_mora');?>">
 						<span class="validation_error">
 							<?php echo form_error('mora');?>
 						</span>
@@ -68,7 +68,7 @@
 					<label class="col-lg-2 control-label" for="shoulder"><?php echo lang('lb_shoulder')?></label>
 					<div class="col-lg-7">
 						<input name="shoulder" class="form-control" id="shoulder"
-						type="text" value="" placeholder="<?php echo lang('placeholder_shoulder');?>">
+						type="text" value="<?php echo set_value('shoulder');?>" placeholder="<?php echo lang('placeholder_shoulder');?>">
 						<span class="validation_error">
 							<?php echo form_error('shoulder');?>
 						</span>
@@ -81,7 +81,7 @@
 					<label class="col-lg-2 control-label" for="chatti"><?php echo lang('lb_chatti')?></label>
 					<div class="col-lg-7">
 						<input name="chatti" class="form-control" id="chatti"
-						type="text" value="" placeholder="<?php echo lang('placeholder_chatti');?>">
+						type="text" value="<?php echo set_value('chatti');?>" placeholder="<?php echo lang('placeholder_chatti');?>">
 						<span class="validation_error">
 							<?php echo form_error('chatti');?>
 						</span>

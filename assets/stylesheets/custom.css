@@ -383,8 +383,8 @@ body.login{
     -moz-border-radius: 4px;
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
-  height: 145px;
-  width: 138px;
+  height: 141px;
+  width: 120px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 4px;
@@ -392,14 +392,18 @@ body.login{
 .img-field{
     margin: 5px 0 10px 0;
     overflow: hidden;
-    max-width: 200px;
+    max-width: 160px;
     background-color: #ECF0F1;
     border-radius: 4px;
-    padding: 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    padding: 2px;
 }
 .height-img{
-    height: 135px;
-    width: 128px
+    height: 130px;
+    width: 110px
     
 }
 .in-field{
