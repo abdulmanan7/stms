@@ -121,11 +121,12 @@ class Client_model extends CI_Model {
 	}
 	public function update($id, $data, $table = '') {
 		$table = (!empty($table)) ? $table : $this->_table;
-		$this->db->where('id', $id);
 		if ($table == "kurta_pem") {
 			$this->db->where('kurta_id', $data['kurta_id']);
+		} else {
+			$this->db->where('id', $id);
+
 		}
-		// pr($data);
 		$this->db->update($table, $data);
 		if ($this->db->affected_rows() > 0) {
 			return (bool) TRUE;
