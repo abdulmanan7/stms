@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Order_model extends MY_Model {
+class Order_model extends CI_Model {
 	protected $_table = 'orders';
 	protected $return_type = 'array';
 	function get_order_by_cell($q, $company_id = NULL) {

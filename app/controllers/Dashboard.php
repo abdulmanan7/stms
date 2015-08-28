@@ -43,6 +43,8 @@ class Dashboard extends CI_Controller {
 	}
 	public function index() {
 		$data = $this->global_array();
+		$this->load->model('client_model', 'clientdb');
+		$data['clients'] = $this->clientdb->get_clients(10, 0);
 		$this->load->view('template', $data);
 	}
 }

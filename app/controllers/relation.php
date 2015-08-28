@@ -10,10 +10,10 @@ class Relation extends CI_Controller {
 		(is_valid_id($client_id, 'client')) ? '' : show_error($this->lang->line('not_valid_id'));
 		$is_added = $this->relation->add($client_id);
 		if ($is_added > 0) {
-			$this->session->set_flashdata('message', set_message($this->lang->line('db_client_added')));
+			set_flash($this->lang->line('db_client_added'));
 			redirect('dashboard', 'refresh');
 		} else {
-			$this->session->set_flashdata('message', set_message($this->lang->line('db_client_add_error')));
+			set_flash($this->lang->line('db_client_add_error'));
 			redirect('dashboard', 'refresh');
 		}
 	}
@@ -21,10 +21,10 @@ class Relation extends CI_Controller {
 		(is_valid_id($client_id, 'client')) ? '' : show_error($this->lang->line('not_valid_id'));
 		$is_remove = $this->relation->remove($client_id);
 		if ($is_remove) {
-			$this->session->set_flashdata('message', set_message($this->lang->line('db_client_removed')));
+			set_flash($this->lang->line('db_client_removed'));
 			redirect('dashboard', 'refresh');
 		} else {
-			$this->session->set_flashdata('message', set_message($this->lang->line('db_client_remove_error')));
+			set_flash($this->lang->line('db_client_remove_error'));
 			redirect('dashboard', 'refresh');
 		}
 	}

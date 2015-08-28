@@ -14,7 +14,7 @@
  *
  */
 
-class Client_model extends MY_Model {
+class Client_model extends CI_Model {
 	protected $_table = 'client';
 	protected $return_type = 'array';
 	protected $comp_id;
@@ -26,6 +26,14 @@ class Client_model extends MY_Model {
 		$this->db->insert($table, $data);
 		$inserted_id = $this->db->insert_id();
 		return $inserted_id;
+	}
+	public function get($table) {
+		return $this->db->get($table)->result_array();
+	}
+	public function get_by($id) {
+		$this->db->where('id', $id);
+		$res = $this->db->get($this->_table, 1, 0);
+		return $res->row_array();
 	}
 	public function save_client($data) {
 		$this->db->trans_start();

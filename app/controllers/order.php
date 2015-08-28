@@ -27,7 +27,7 @@ class Order extends CI_Controller {
 			'user_name' => $this->session->userdata('username'),
 			'refresh_url' => base_url('order'),
 			'add_link' => 'order/add',
-			'count' => $this->orderdb->count_all(),
+			'count' => $this->common->count_all('orders'),
 			'user_id' => $this->session->userdata('user_id'),
 		);
 
