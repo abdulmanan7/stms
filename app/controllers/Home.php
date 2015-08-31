@@ -6,7 +6,6 @@ class Home extends CI_Controller {
 	public function index() {
 		$this->load->view('home/index.php');
 	}
-
 }
 
 /* End of file home.php */

@@ -34,12 +34,12 @@
 	<div class="info-body">
 		<?php foreach ($clients as $client): ?>
 		<div class="client-rec">
-	<div class="col-lg-6 head">
+	<div class="col-sm-8 head">
 		<?php echo htmlspecialchars($client['name'], ENT_QUOTES, 'UTF-8');?>
 		<p><?php echo htmlspecialchars($client['cellphone'], ENT_QUOTES, 'UTF-8');?></p>
 	</div>
 
-	<div class="col-lg-6 action">
+	<div class="col-sm-4 action">
 		<a class='btn btn-info' href='<?php echo base_url("client/view/" . $client['id']);?>'>
 			<i class='icon-folder-open'></i>
 		</a>

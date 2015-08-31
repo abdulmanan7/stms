@@ -9,7 +9,7 @@
  *
  */
 
-class Products_model extends MY_Model {
+class Products_model extends CI_Model {
 	public $comp_id;
 	public function __construct() {
 		parent::__construct();

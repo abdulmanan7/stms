@@ -43,7 +43,8 @@ body.login .wrapper .brand h1 .logo-icon {
 }
 .head {
     height: 60px;
-    background-color: #78A8C3;
+    background-color: #BDC3C7;
+    /*background-color: #78A8C3;*/
     padding: 10px;
     font-weight: 700;
 }
@@ -386,16 +387,14 @@ body.login{
   margin-top: 4px;
 }
 .img-field{
-    margin: 5px 0 10px 0;
+  display: inline-block;
     overflow: hidden;
     max-width: 160px;
     background-color: #ECF0F1;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
     padding: 2px;
+    float: left;
+    margin-bottom: 20px;
+    margin-left: 20px;
 }
 .height-img{
     height: 130px;
@@ -461,7 +460,7 @@ height: 115px;
     max-width: 100%;
 }
 .box-text{
-    font-weight: 800;
+    font-weight: 700;
     font-size: x-large;
     margin: 10px;
     line-height: 0.5;

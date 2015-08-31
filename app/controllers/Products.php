@@ -21,7 +21,7 @@ class Products extends CI_Controller {
 			'user_name' => $this->session->userdata('username'),
 			'refresh_url' => base_url('products'),
 			'add_link' => 'products/add',
-			'count' => $this->products_model->count_all(),
+			'count' => $this->products_model->rec_count(),
 			'user_id' => $this->session->userdata('user_id'),
 		);
 		return $data;
