@@ -28,7 +28,7 @@ class Client extends CI_Controller {
 			'user_name' => $this->session->userdata('username'),
 			'refresh_url' => base_url('client'),
 			'add_link' => 'client/add',
-			'count' => $this->common->count_all('client'),
+			'count' => $this->common_model->count_all('client'),
 			'user_id' => $this->session->userdata('user_id'),
 		);
 
@@ -57,7 +57,7 @@ class Client extends CI_Controller {
 		if ($this->input->post()) {
 			//check if record already exits
 			$cell = $this->input->post('cellphone');
-			$rec_exist = $this->common->record_exists('client', 'cellphone', $cell);
+			$rec_exist = $this->common_model->record_exists('client', 'cellphone', $cell);
 			if ($rec_exist == true) {
 				$this->session->set_flashdata('message', set_message("User with cellphone No <strong>" . $cell . "</strong> already exist !", 'notify'));
 				redirect('client/view?search=' . $cell, 'refresh');
@@ -160,7 +160,7 @@ class Client extends CI_Controller {
 					'shalwar' => $this->input->post('shalwar') . " " . $this->input->post('shalwar-x'),
 					'pancha' => $this->input->post('pancha') . " " . $this->input->post('pancha-x'),
 				);
-				$res = $this->common->insert($post_data, 'kurta_pem');
+				$res = $this->common_model->insert($post_data, 'kurta_pem');
 				if ($res > 0) {
 					$this->session->set_flashdata('message', set_message("Record has been added successfully !"));
 					redirect('client');
@@ -215,7 +215,7 @@ class Client extends CI_Controller {
 					'pancha' => $this->input->post('pancha') . " " . $this->input->post('pancha-x'),
 				);
 				// pr($post_data);
-				$res = $this->common->update($client_id, $post_data, 'kurta_pem');
+				$res = $this->common_model->update($client_id, $post_data, 'kurta_pem');
 				if ($res == true) {
 					set_flash("Record has been updated successfully !");
 					redirect('client');
@@ -239,7 +239,7 @@ class Client extends CI_Controller {
 		$data['heading'] = "Client Add";
 
 	}
-	function add_jacket($data =array()) {
+	function add_jacket($data = array()) {
 		$data = $this->global_array();
 		$data['heading'] = "Adding Client jacket";
 
@@ -277,7 +277,7 @@ class Client extends CI_Controller {
 	}
 	public function delete($id = NULL) {
 		(is_valid_id($id, 'client')) ? '' : show_404();
-		$is_deleted = $this->common->delete($id);
+		$is_deleted = $this->common_model->delete($id);
 		if ($is_deleted) {
 			$this->session->set_flashdata('message', set_message("Record has been removed successfully !"));
 			redirect('client');
