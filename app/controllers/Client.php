@@ -229,17 +229,17 @@ class Client extends CI_Controller {
 			$this->load->view('template', $data);
 		}
 	}
-	function add_pant($data = []) {
+	function add_pant($data = array()) {
 		$data = $this->global_array();
 		$data['heading'] = "Addning client pant";
 
 	}
-	function add_wasket($data = []) {
+	function add_wasket($data = array()) {
 		$data = $this->global_array();
 		$data['heading'] = "Client Add";
 
 	}
-	function add_jacket($data = []) {
+	function add_jacket($data =array()) {
 		$data = $this->global_array();
 		$data['heading'] = "Adding Client jacket";
 
