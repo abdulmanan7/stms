@@ -500,4 +500,11 @@ height: 115px;
    .img{
     width: 86px;
    }
+   .box-text sup {
+    font-size: 56%;
+  }
+  .box-text {
+    font-weight:700;
+    font-size: 18px;
+  }
 }
