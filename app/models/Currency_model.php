@@ -1,0 +1,129 @@
+<?php if (!defined('BASEPATH')) {
+	exit('No direct script access allowed');
+}
+
+/**
+ * Name:  Company Model
+ *
+ * Author:  Abdul Manan
+ *
+ */
+
+class Currency_model extends CI_Model {
+	public $comp_id;
+
+	public function __construct() {
+		parent::__construct();
+		$this->load->helper('date');
+		$this->comp_id = $this->session->userdata('user_id');
+
+	}
+
+	//CRUD Start
+	public function add($data, $company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$data['company_id'] = $company_id;
+		$this->db->insert('currency', $data);
+		if ($this->db->insert_id() > 1) {
+			return set_message('Record Added Successfully');
+		}
+		return set_message('Error while creating record', "error");
+	}
+
+	public function update($data, $company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$data['company_id'] = $company_id;
+		$this->db->where('id', $data['id']);
+		$this->db->where('company_id', $company_id);
+		$this->db->update('currency', $data);
+		if ($data['default'] == '1') {
+			$this->db->where('id !=', $data['id']);
+			$this->db->where('company_id', $company_id);
+			$this->db->set('default', '0');
+			$this->db->update('currency');
+		}
+		if ($this->db->insert_id() > 1) {
+			return set_message(lang('db_updated_record'));
+		}
+		return set_message(lang('db_update_error'), 'error');
+	}
+
+	public function delete($id, $company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		if ($id > 0 && !$this->is_default($id, $company_id)) {
+			$this->db->where('id', $id);
+			$this->db->where('company_id', $company_id);
+			$this->db->limit(1, 0);
+			$this->db->delete('currency');
+			return ($this->db->affected_rows() > 0) ? 'Record Deleted Successfully' : 'Error Deleting Record';
+		} else {
+			return "Either you are Deleting a Default Currency or the record id is not valid";
+		}
+	}
+
+	public function getcurrency($currencyId = NULL, $company_id = NULL, $data = array()) {
+		if (!empty($data)) {
+			$this->db->limit($data['limit'], $data['offset']);
+		}
+
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$this->db->select('*')->from('currency');
+		$this->db->where('company_id', $company_id)->order_by('default', 'DESC');
+		//single record
+		if ($currencyId) {
+			$this->db->where('id', $currencyId);
+			return $this->db->get()->row_array();
+		}
+
+		//multiple list
+		else {
+			return $this->db->get()->result_array();
+		}
+
+	}
+
+	public function getcurrencyBySql($currencyId = NULL, $company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+
+		$this->db->select('id as "currency_id",title as "currency_name",symbol_left as "currency_symbol_left", symbol_right as "currency_symbol_right"')
+			->from('currency')
+			->where('company_id', $company_id);
+
+		//single record
+		if ($currencyId) {
+			$result = $this->db->where('id', $currencyId);
+			$result = $this->db->get()->row_array();
+		}
+		//multiple list
+		else {
+			$result = $this->db->get()->result_array();
+		}
+
+		return $result;
+	}
+
+	public function getDefaultCurrency($company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$this->db->select('*')->from('currency');
+		$this->db->where('company_id', $company_id);
+		//single record
+		$this->db->where('default', '1');
+		$this->db->where('status', '1');
+		return $this->db->get()->row_array();
+	}
+
+	public function rec_count($company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$this->db->where('company_id', $company_id);
+		return $this->db->count_all_results("currency");
+	}
+
+	public function is_default($Id, $company_id = NULL) {
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$this->db->where('company_id', $company_id);
+		$this->db->where('default', '1');
+		$this->db->where('id', $Id);
+		$query = $this->db->get('currency');
+		return ($query->num_rows() > 0) ? TRUE : FALSE;
+	}
+}

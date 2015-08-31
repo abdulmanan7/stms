@@ -1,0 +1,93 @@
+.statbox {
+    height: 120px;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 28px;
+}
+.green
+ {
+  background: #00A300 !important;
+  border-color: #00A300 !important;
+  color: #fff;
+}
+.greenLight {
+  background: #99B433 !important;
+  border-color: #99B433 !important;
+  color: #fff;
+}
+
+.pink{
+  background: #9F00A7 !important;
+  border-color: #9F00A7 !important;
+  color: #fff;
+}
+
+.pinkDark {
+  background: #7E3878 !important;
+  border-color: #7E3878 !important;
+  color: #fff;
+}
+
+.yellow{
+  background: #FFC40D !important;
+  border-color: #FFC40D !important;
+  color: #fff;
+}
+
+.purple {
+  background: #603CBA !important;
+  border-color: #603CBA !important;
+  color: #fff;
+}
+
+.blue{
+  background: #2D89EF !important;
+  border-color: #2D89EF !important;
+  color: #fff;
+}
+
+.blueDark{
+  background: #2B5797 !important;
+  border-color: #2B5797 !important;
+  color: #fff;
+}
+
+.blueLight {
+  background: #EFF4FF !important;
+  border-color: #EFF4FF !important;
+  color: #fff;
+}
+
+.orange{
+  background: #E3A21A !important;
+  border-color: #E3A21A !important;
+  color: #fff;
+}
+
+.orangeDark{
+  background: #DA532C !important;
+  border-color: #DA532C !important;
+  color: #fff;
+}
+
+.red {
+  background: #EB3C00 !important;
+  border-color: #EB3C00 !important;
+  color: #fff;
+}
+
+.widget.green h2 .glyphicons i:before,
+.widget.greenDark h2 .glyphicons i:before,
+.widget.greenLight h2 .glyphicons i:before,
+.widget.pink h2 .glyphicons i:before,
+.widget.pinkDark h2 .glyphicons i:before,
+.widget.yellow h2 .glyphicons i:before,
+.widget.purple h2 .glyphicons i:before,
+.widget.blue h2 .glyphicons i:before,
+.widget.blueDark h2 .glyphicons i:before,
+.widget.blueLight h2 .glyphicons i:before,
+.widget.orange h2 .glyphicons i:before,
+.widget.orangeDark h2 .glyphicons i:before,
+.widget.red h2 .glyphicons i:before {
+  color: #fff;
+}
