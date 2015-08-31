@@ -104,6 +104,7 @@
 				},
 				'lambai-x': {xField:true,},
 					'mora-x': {xField:true,},
+					'chatti-x': {xField:true,},
 					'shalwar-x': {xField:true,},
 					'shoulder-x': {xField:true,},
 					'tera-x': {xField:true,},

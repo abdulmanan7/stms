@@ -20,6 +20,7 @@
           <?php echo box_img($kurta['chatti'], 'chatti');?>
           <?php echo box_img($kurta['tera'], 'tera');?>
           <?php echo box_img($kurta['shoulder'], 'shoulder');?>
+          <?php echo box_img($kurta['shalwar'], 'shalwar');?>
           <?php echo box_img($kurta['collar'], 'collar');?>
           <?php echo box_img($kurta['asteen'], 'asteen');?>
           <?php echo box_img($kurta['mora'], 'mora');?>

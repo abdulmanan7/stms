@@ -421,13 +421,7 @@ body.login{
     color:gray;
     font-weight: 700;
 }
-@media (max-width: 580px) { 
-   .col-xxs {
-      display:block;
-      float:none;
-      width: 100%
-   }
-}
+
 .mrgn-bm-10{
   margin-bottom: 10px;
 }
@@ -449,7 +443,7 @@ body.login{
     height: 168px;
     text-align: center;
     float: left;
-    margin-left: 30px;
+    margin-left: 20px;
     margin-bottom: 20px;
 }
 .img-inside{
@@ -487,4 +481,23 @@ height: 115px;
     /* margin-right: auto; */
     /* margin-left: auto; */
     /* margin-top: 4px; */
+}
+@media (max-width: 580px) { 
+   .col-xxs {
+      display:block;
+      float:none;
+      width: 100%
+   }
+   .img-box{
+    max-width: 86px;
+    margin-left: 5px;
+   }
+   .img-field{
+    max-width: 92px;
+    margin-left: 8px;
+
+   }
+   .img{
+    width: 86px;
+   }
 }
