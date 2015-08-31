@@ -31,7 +31,7 @@ class Ajax extends CI_Controller {
 			'user_name' => $this->session->userdata('username'),
 			'refresh_url' => base_url('client'),
 			'add_link' => 'client/add',
-			'count' => $this->clientdb->count_all(),
+			'count' => $this->common->count_all('client'),
 			'user_id' => $this->session->userdata('user_id'),
 		);
 

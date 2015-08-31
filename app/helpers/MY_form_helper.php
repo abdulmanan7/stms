@@ -108,3 +108,13 @@ if (!function_exists('img_field')) {
             </div>';
 	}
 }
+if (!function_exists('box_img')) {
+	function box_img($val = '', $img_name = '', $img_x = '.png') {
+		return '<div class="img-box">
+               <div class="box-img">
+                <img src="' . find_url('images', 'entry/' . $img_name . $img_x) . '" class="img-inside" alt="Image">
+                </div>
+                <div class="box-text">' . find_style($val) . '</div>
+                </div>';
+	}
+}

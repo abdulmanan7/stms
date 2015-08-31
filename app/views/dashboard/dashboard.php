@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="row" id="main-row">
 	<div class="col-md-4 ">
 		<div class="search-bar push-up-15">
@@ -24,35 +24,35 @@
 			</form>
 		</div>
 		<?php if (empty($clients)): ?>
-<p class="no-data"><?php echo lang('msg_no_data'); ?></p>
+<p class="no-data"><?php echo lang('msg_no_data');?></p>
 <?php else: ?>
 
-	<div class="info-box">
+	<div class="info-box info-success">
 	<div class="info-header">
 		<p>Recent Added Records</p>
 	</div>
 	<div class="info-body">
 		<?php foreach ($clients as $client): ?>
 		<div class="client-rec">
-	<div class="col-lg-12 head">
-		<?php echo htmlspecialchars($client['name'], ENT_QUOTES, 'UTF-8'); ?>
-		<p><?php echo htmlspecialchars($client['cellphone'], ENT_QUOTES, 'UTF-8'); ?></p>
+	<div class="col-lg-6 head">
+		<?php echo htmlspecialchars($client['name'], ENT_QUOTES, 'UTF-8');?>
+		<p><?php echo htmlspecialchars($client['cellphone'], ENT_QUOTES, 'UTF-8');?></p>
 	</div>
 
-	<div class="col-lg-12 action">
-		<a class='btn btn-info' href='<?php echo base_url("client/view/" . $client['id']); ?>'>
+	<div class="col-lg-6 action">
+		<a class='btn btn-info' href='<?php echo base_url("client/view/" . $client['id']);?>'>
 			<i class='icon-folder-open'></i>
 		</a>
-		<a class='btn btn-success' href='<?php echo base_url("client/update/" . $client['id']); ?>'>
+		<a class='btn btn-success' href='<?php echo base_url("client/update/" . $client['id']);?>'>
 			<i class='icon-edit'></i>
 		</a>
-		<a class='btn btn-danger' href='<?php echo base_url("relation/remove/" . $client['id']); ?>'>
+		<a class='btn btn-danger' href='<?php echo base_url("relation/remove/" . $client['id']);?>'>
 			<i class='icon-trash'></i>
 		</a>
 	</div>
 </div>
-<?php endforeach; ?>
-<?php endif ?>
+<?php endforeach;?>
+<?php endif?>
 	</div>
 
 	</div>
@@ -65,17 +65,14 @@
 <script>
   	$(function() {
     $( "#by_cellphone" ).autocomplete({
-      source: "<?php echo base_url('ajax/get_client_by_cell'); ?>
-		",
+      source: "<?php echo base_url('ajax/get_client_by_cell');?>",
 		minLength: 2,
 		select: function( event, ui ) {
 		display_client( ui.item ? ui.item.value:'no-data' );
 		}
 		});
 		$( "#by_name" ).autocomplete({
-		source: "
-<?php echo base_url('ajax/get_client_by_name'); ?>
-	",
+		source: "<?php echo base_url('ajax/get_client_by_name');?>",
 	minLength: 2,
 	select: function( event, ui ) {
 	display_client( ui.item ? ui.item.label:'no-data' );
@@ -88,9 +85,7 @@
 	$('.client_info').appendTo(div);
 	};
 	$.ajax({
-	url: '
-<?php echo base_url("ajax/get_client_details"); ?>
-		',
+	url:"<?php echo base_url("ajax/get_client_details");?>",
 		dataType: 'html',
 		data: {param: param},
 		success:function(msg){
