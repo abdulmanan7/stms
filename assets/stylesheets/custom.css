@@ -482,7 +482,7 @@ height: 115px;
     /* margin-left: auto; */
     /* margin-top: 4px; */
 }
-@media (max-width: 580px) { 
+@media (max-width: 520px) { 
    .col-xxs {
       display:block;
       float:none;
