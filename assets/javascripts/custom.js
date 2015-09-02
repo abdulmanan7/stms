@@ -88,3 +88,4 @@ jQuery.validator.setDefaults({
     number: "Only numbers Allowed",
     minlength:'',
 });
+ 

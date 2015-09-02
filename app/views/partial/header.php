@@ -22,6 +22,9 @@
 <?php if ($page_title == 'Dashboard'): ?>
     <link href='<?php echo find_url("css", "dashboard.css");?>' rel="stylesheet" type="text/css" />
 <?php endif?>
+<?php if ($page_title == 'Order'): ?>
+    <link href='<?php echo find_url("css", "checkbox.css");?>' rel="stylesheet" type="text/css" />
+<?php endif?>
   </head>
   <body class='main page'>
     <!-- Navbar -->
@@ -134,17 +137,10 @@
         <div id='toolbar'>
           <div class='btn-group'>
             <a class='btn' data-toggle='toolbar-tooltip' href='<?php echo base_url('client/add');?>' title='add client'>
-              <i class='icon-plus'></i>
+              <i class='icon-plus'></i> Add Client
             </a>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Laptop'>
-              <i class='icon-laptop'></i>
-            </a>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Calendar'>
-              <i class='icon-calendar'></i>
-              <span class='badge'>3</span>
-            </a>
-            <a class='btn' data-toggle='toolbar-tooltip' href='#' title='Lemon'>
-              <i class='icon-lemon'></i>
+            <a class='btn' data-toggle='toolbar-tooltip' href='<?php echo base_url("dashboard")?>' title='Search Client'>
+              <i class='icon-search'></i> Search
             </a>
           </div>
         </div>

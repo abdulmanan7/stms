@@ -29,6 +29,7 @@ class Order extends CI_Controller {
 			'add_link' => 'order/add',
 			'count' => $this->common->count_all('orders'),
 			'user_id' => $this->session->userdata('user_id'),
+			'cloths_no' => array('1 Suit' => 1, '2 suits' => 2, '3 suits' => 3, '4 suits' => 4, '5 suits' => 5, '6 suits' => 6, '7 suits' => 7, '8 suits' => 8, '9 suits' => 9, '10 suits' => 10),
 		);
 
 		return $data;
@@ -68,13 +69,17 @@ class Order extends CI_Controller {
 	public function get_client_info() {
 		$cellphone = $this->input->get('cellphone');
 		$res = $this->client_model->client_search($cellphone, TRUE);
+		$this->load->model('products_model', 'product');
+		$data['products'] = $this->product->get_all();
 		if ($this->input->is_ajax_request()) {
 			$data['client'] = $res;
+			$data['cloths_no'] = array('1 Suit' => 1, '2 suits' => 2, '3 suits' => 3, '4 suits' => 4, '5 suits' => 5, '6 suits' => 6, '7 suits' => 7, '8 suits' => 8, '9 suits' => 9, '10 suits' => 10);
 			echo $this->load->view('orders/ajax/client', $data, TRUE);
 		} else {
 			$data = $this->global_array();
 			$data['client'] = $res;
 			$data['page'] = 'orders/orders';
+			// pr($data);
 			$this->load->view('template', $data);
 		}
 	}

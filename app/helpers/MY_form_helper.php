@@ -1,7 +1,6 @@
 <?php if (!defined('BASEPATH')) {
 	exit('No direct script access allowed');
 }
-
 if (!function_exists('button')) {
 	function button($type, $link = '', $tooltip = NULL, $size = '', $icon = '') {
 		$size = (!empty($size)) ? ' btn-' . $size : '';
@@ -94,27 +93,110 @@ if (!function_exists('img_field')) {
 		$id = (!empty($id)) ? $id : $field_name;
 		$placeholder = (!empty($placeholder)) ? $placeholder : "placeholder_" . $field_name;
 		return '<div class="img-field">
-               <div class="img">
-                <img src="' . find_url('images', 'entry/' . $img_name) . '" class="height-img img-responsive" alt="' . $img_name . '">
-                </div>
-                <div class="in-field">
-            <div class="input-group">
-                <input type="text" name="' . $field_name . '" value="' . find_return($val, 2) . '" class="form-control" id="' . $field_name . '" placeholder="' . lang($placeholder) . '">
-            </div>
-                <div class="input-group">
-                <input type="text" name="' . $field_name_2nd . '" value="' . find_return($val) . '" class="form-control" id="' . $field_name_2nd . '" placeholder="e.g 1/2,1/4">
-            </div>
-                </div>
-            </div>';
+		<div class="img">
+			<img src="' . find_url('images', 'entry/' . $img_name) . '" class="height-img img-responsive" alt="' . $img_name . '">
+		</div>
+		<div class="in-field">
+			<div class="input-group">
+				<input type="text" name="' . $field_name . '" value="' . find_return($val, 2) . '" class="form-control" id="' . $field_name . '" placeholder="' . lang($placeholder) . '">
+			</div>
+			<div class="input-group">
+				<input type="text" name="' . $field_name_2nd . '" value="' . find_return($val) . '" class="form-control" id="' . $field_name_2nd . '" placeholder="e.g 1/2,1/4">
+			</div>
+		</div>
+	</div>';
 	}
 }
 if (!function_exists('box_img')) {
 	function box_img($val = '', $img_name = '', $img_x = '.png') {
 		return '<div class="img-box">
-               <div class="box-img">
-                <img src="' . find_url('images', 'entry/' . $img_name . $img_x) . '" class="img-inside" alt="Image">
-                </div>
-                <div class="box-text">' . find_style($val) . '</div>
-                </div>';
+		<div class="box-img">
+			<img src="' . find_url('images', 'entry/' . $img_name . $img_x) . '" class="img-inside" alt="Image">
+		</div>
+		<div class="box-text">' . find_style($val) . '</div>
+	</div>';
+	}
+}
+if (!function_exists('checkbox')) {
+	function checkbox($checkbox = 'squaredFour', $val = 'None', $name = 'check', $status = 'checked', $label = '') {
+
+		switch ($checkbox) {
+			case 'slideOne':
+				return '<!-- .slideOne -->
+			<div class="slideOne">
+			<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="slideOne"></label>
+			</div>
+			<!-- end .slideOne -->';
+				break;
+			case 'slideTwo':
+				return '<!-- .slideTwo -->
+			<div class="slideTwo">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="slideTwo">' . $label . '</label>
+			</div>
+			<!-- end .slideTwo -->';
+				break;
+			case 'slideThree':
+				return '<!-- .slideThree -->
+			<div class="slideThree">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="slideThree">' . $label . '</label>
+			</div>
+			<!-- end .slideThree -->';
+				break;
+			case 'roundedOne':
+				return '<!-- .roundedOne -->
+			<div class="roundedOne">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="roundedOne">' . $label . '</label>
+			</div>
+			<!-- end .roundedOne -->';
+				break;
+			case 'roundedTwo':
+				return '    <!-- .roundedTwo -->
+			<div class="roundedTwo">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="roundedTwo">' . $label . '</label>
+			</div>
+			<!-- end .roundedTwo -->';
+				break;
+			case 'squaredOne':
+				return '<!-- .squaredOne -->
+			<div class="squaredOne">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="squaredOne">' . $label . '</label>
+			</div>
+			<!-- end .squaredOne -->';
+				break;
+			case 'squaredTwo':
+				return ' <!-- .squaredTwo -->
+			<div class="squaredTwo">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="squaredTwo">' . $label . '</label>
+			</div>
+			<!-- end .squaredTwo -->';
+				break;
+			case 'squaredThree':
+				return '<!-- .squaredThree -->
+			<div class="squaredThree">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="squaredThree">' . $label . '</label>
+			</div>
+			<!-- end .squaredThree -->';
+				break;
+			case 'squaredFour':
+				return '<!-- .squaredFour -->
+			<div class="squaredFour">
+				<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+				<label for="squaredFour">' . $label . '</label>
+			</div>
+			<!-- end .squaredFour -->';
+				break;
+			default:
+				return '<input type="checkbox" value="' . trim($val) . '" name="' . $name . '" ' . $status . ' />
+			<label for="squaredFour">' . $label . '</label>';
+				break;
+		}
 	}
 }

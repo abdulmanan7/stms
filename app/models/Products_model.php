@@ -68,6 +68,16 @@ class Products_model extends CI_Model {
 		}
 
 	}
+	public function get_all($company_id = NULL, $data = array()) {
+		if (!empty($data)) {
+			$this->db->limit($data['limit'], $data['offset']);
+		}
+		$company_id = ($company_id) ? $company_id : $this->comp_id;
+		$this->db->where('company_id', $company_id);
+		$this->db->or_where('company_id', 0);
+		$res = $this->db->get('products');
+		return $res->result_array();
+	}
 	//This function is used for populating dropdown list.
 	function get_products($q, $company_id = NULL) {
 		$company_id = ($company_id) ? $company_id : $this->comp_id;
