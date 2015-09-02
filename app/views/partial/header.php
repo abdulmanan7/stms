@@ -9,6 +9,9 @@
     <meta content='' name='keywords'>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=515">
+    <?php if ($page_title == 'Subscribe'): ?>
+      <link rel="stylesheet" href="<?php echo base_url('res/css/main.css');?>">
+<?php endif?>
     <link href='<?php echo find_url("css", "application-a07755f5.css");?>' rel="stylesheet" type="text/css" />
     <link href='<?php echo find_url("css", "jq_ui/jquery-ui.css");?>' rel="stylesheet" type="text/css" />
     <link href='<?php echo find_url("css", "font-awesome/css/font-awesome.min.css");?>' rel="stylesheet" type="text/css" />

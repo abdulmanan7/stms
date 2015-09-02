@@ -11,6 +11,7 @@ body.login .wrapper .brand h1 .logo-icon {
     -o-border-radius: 40px;
     background: #FFFFFF;
 }
+
 /*registration page*/
 .registration{
     padding: 10px;
@@ -305,11 +306,6 @@ body.login{
 .info-header{
  background-color: #ECF0F1;
  padding: 8px;
- /*border-radius: 18px 0 0 0;
- -webkit-border-radius: 18px 0 0 0;
- -moz-border-radius: 18px 0 0 0;
- -ms-border-radius: 18px 0 0 0;
- -o-border-radius: 18px 0 0 0;*/
  color: #3F8AB5;
  margin-top: 20px;
 }
@@ -337,8 +333,9 @@ body.login{
   margin: 0 auto;
 }
 .info-xs{
-  width: 26%;
-  margin: 0 auto;
+      width: 26%;
+    display: inline-block;
+    margin-left: 10px;
 }
 .info-info .info-header {
     color:#fff;
@@ -367,6 +364,13 @@ body.login{
 }
 .info-default .info-body{
     border-color: #ECF0F1;
+}
+.info-primary .info-header {
+    color:#fff;
+    background-color:#AA769C; 
+}
+.info-primary .info-body{
+    border-color: #AA769C;
 }
 .img{
   display: block;
@@ -469,18 +473,7 @@ height: 115px;
 .box-img{
     padding: 4px;
     margin-bottom: 10px;
-    /* line-height: 1.42857143; */
     background-color: #E4E4DF;
-    /* border: 1px solid #ddd; */
-    /* border-radius: 4px; */
-    /*-webkit-transition: border .2s ease-in-out;*/
-    /*-o-transition: border .2s ease-in-out;*/
-    /* transition: border .2s ease-in-out; */
-    /* height: 125px; */
-    /* width: 110px; */
-    /* margin-right: auto; */
-    /* margin-left: auto; */
-    /* margin-top: 4px; */
 }
 @media (max-width: 520px) { 
    .col-xxs {
@@ -507,4 +500,41 @@ height: 115px;
     font-weight:700;
     font-size: 18px;
   }
+}
+.details {
+    background-color: #3F8AB5;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #FFF;
+    padding: 5px;
+    border-bottom: 1px solid #979C9F;
+}
+.order{
+        border: 1px solid black;
+    border-radius: 10px;
+    color: gray;
+    border: 1px solid #BDC3C7;
+    background-color: #F4F4F4;
+    margin-top: 4px;
+    padding-bottom: 10px;
+    
+}
+.detail-sep{
+padding: 3px;
+    background-color: aqua;
+    
+}
+.product  {
+    float: left;
+    width: 162px;
+    background-color: aliceblue;
+    padding: 10px;
+    border-radius: 64px;
+    text-align: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+.product .badge{
+font-size: 18px;
 }

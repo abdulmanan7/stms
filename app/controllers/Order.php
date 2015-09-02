@@ -13,6 +13,8 @@ class Order extends CI_Controller {
 		if (!$this->ion_auth->logged_in()) {
 			redirect('auth/login');
 		} else {
+			set_flash('you are using free version ,you can use <b>Orders</b> subscribe below for full version.');
+			redirect('customer_care/not_authorize', 'refresh');
 			$this->lang->load('order');
 			$this->load->model('order_model', 'orderdb');
 			$this->load->model('client_model');

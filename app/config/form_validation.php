@@ -26,6 +26,35 @@ $config = array(
 			'rules' => 'trim|required',
 		),
 	),
+	'contact_us' => array(
+		array(
+			'field' => 'name',
+			'label' => 'Name',
+			'rules' => 'trim|required',
+		),
+		array(
+			'field' => 'phone',
+			'label' => 'Phone No',
+			'rules' => 'trim|required',
+		),
+	),
+	'subscribe' => array(
+		array(
+			'field' => 'name',
+			'label' => 'Name',
+			'rules' => 'trim|required',
+		),
+		array(
+			'field' => 'phone',
+			'label' => 'Phone No',
+			'rules' => 'trim|required',
+		),
+		array(
+			'field' => 'pakage',
+			'label' => 'Pakage',
+			'rules' => 'trim|required',
+		),
+	),
 	'kurta' => array(
 		array(
 			'field' => 'lambai',
